@@ -140,6 +140,7 @@ GameObject:
   - component: {fileID: 1554197496}
   - component: {fileID: 329948427966667482}
   - component: {fileID: 5530499757705377270}
+  - component: {fileID: 7120920400476745458}
   - component: {fileID: 1358702510}
   m_Layer: 0
   m_Name: Player
@@ -302,6 +303,25 @@ MonoBehaviour:
   slideForce: 400
   slideCounterMovement: 0.2
   jumpForce: 550
+--- !u!114 &7120920400476745458
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5530499757705377279}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 544263747b1df09469eb7ec5d63d5a79, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isWallR: 0
+  isWallL: 0
+  cc: {fileID: 5530499757705377270}
+  rb: {fileID: 5530499757705377271}
+  cameraEffect: {fileID: 5530499758437025967}
+  anim: {fileID: 1734128573}
+  canJump: 0
 --- !u!114 &1358702510
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -326,6 +346,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5530499758437025967}
+  - component: {fileID: 1734128573}
   m_Layer: 0
   m_Name: Head
   m_TagString: Untagged
@@ -347,3 +368,22 @@ Transform:
   m_Father: {fileID: 5530499757705377275}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!95 &1734128573
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5530499758437025964}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 37e2fb8ded7f6264087844578d5da150, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0

@@ -18,8 +18,8 @@ public class PlayerMovement : NetworkBehaviour
     private float sensMultiplier = 1f;
 
     //Movement
-    public float moveSpeed = 4500;
-    public float maxSpeed = 20;
+    public float moveSpeed = 4500f;
+    public float maxSpeed = 20f;
     public bool grounded;
     public LayerMask whatIsGround;
 
@@ -247,9 +247,10 @@ public class PlayerMovement : NetworkBehaviour
         float u = Mathf.DeltaAngle(lookAngle, moveAngle);
         float v = 90 - u;
 
+        float thing = new Vector3(rb.velocity.x, 0, rb.velocity.z).magnitude;
         float magnitue = rb.velocity.magnitude;
-        float yMag = magnitue * Mathf.Cos(u * Mathf.Deg2Rad);
-        float xMag = magnitue * Mathf.Cos(v * Mathf.Deg2Rad);
+        float yMag = thing * Mathf.Cos(u * Mathf.Deg2Rad);
+        float xMag = thing * Mathf.Cos(v * Mathf.Deg2Rad);
 
         return new Vector2(xMag, yMag);
     }
