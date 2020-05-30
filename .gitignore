@@ -61,5 +61,3 @@ sysinfo.txt
 # Crashlytics generated file
 crashlytics-build.properties
 
-# Enet log file
-enet_log.txt
