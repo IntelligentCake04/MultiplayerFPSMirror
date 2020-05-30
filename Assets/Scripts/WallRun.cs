@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class WallRun : MonoBehaviour
 {
-
+    [SerializeField] private float rayCastMaxDistance = 2;
     public bool isWallR = false;
     public bool isWallL = false;
     private RaycastHit hitR;
@@ -14,6 +14,7 @@ public class WallRun : MonoBehaviour
     public Transform cameraEffect;
     public Animator anim;
     public bool canJump;
+    public float jumpForce = 25;
 
     // Use this for initialization
     void Start()
@@ -51,9 +52,24 @@ public class WallRun : MonoBehaviour
             anim.SetBool("Right", true);
         }
 
+        if (canJump == true && Input.GetKeyDown(KeyCode.Space))
+        {
+            rb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
+            if (isWallL == true)
+            {
+                Vector3 force = this.transform.right * jumpForce;
+                rb.AddForceAtPosition(force, this.transform.position, ForceMode.Impulse);
+            }
+            if (isWallR == true)
+            {
+                Vector3 force = -this.transform.right * jumpForce;
+                rb.AddForceAtPosition(force, this.transform.position, ForceMode.Impulse);
+            }
+        }
+
         if (!cc.grounded)
         {
-            if (Physics.Raycast(transform.position, transform.right, out hitR, 1))
+            if (Physics.Raycast(transform.position, transform.right, out hitR, rayCastMaxDistance))
             {
                 if (hitR.transform.tag == "Wall")
                 {
@@ -65,7 +81,7 @@ public class WallRun : MonoBehaviour
                     rb.useGravity = false;
                 }
             }
-            if (!Physics.Raycast(transform.position, transform.right, out hitR, 1))
+            if (!Physics.Raycast(transform.position, transform.right, out hitR, rayCastMaxDistance))
             {
 
                 isWallR = false;
@@ -76,7 +92,7 @@ public class WallRun : MonoBehaviour
                     rb.useGravity = true;
                 }
             }
-            if (Physics.Raycast(transform.position, -transform.right, out hitL, 1))
+            if (Physics.Raycast(transform.position, -transform.right, out hitL, rayCastMaxDistance))
             {
                 if (hitL.transform.tag == "Wall")
                 {
@@ -86,7 +102,7 @@ public class WallRun : MonoBehaviour
                     rb.useGravity = false;
                 }
             }
-            if (!Physics.Raycast(transform.position, -transform.right, out hitL, 1))
+            if (!Physics.Raycast(transform.position, -transform.right, out hitL, rayCastMaxDistance))
             {
 
                 isWallL = false;
