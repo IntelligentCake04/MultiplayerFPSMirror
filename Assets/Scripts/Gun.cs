@@ -8,10 +8,13 @@ public class Gun : MonoBehaviour
 
     public bool isAutomatic = false;
     public Camera fpsCam;
-    public ParticleSystem muzzleFlash;
-    public GameObject bullet;
 
     private float nextTimeToFire = 0f;
+
+    private void Start()
+    {
+        fpsCam = Camera.main;
+    }
 
     // Update is called once per frame
     void Update()
@@ -24,8 +27,8 @@ public class Gun : MonoBehaviour
                 Shoot();
             }
         }
-
-        if (isAutomatic == true)
+        
+        if(isAutomatic == true)
         {
             if (Input.GetButton("Fire1") && Time.time >= nextTimeToFire)
             {
@@ -37,10 +40,6 @@ public class Gun : MonoBehaviour
 
     void Shoot()
     {
-        muzzleFlash.Play();
-        fpsCam = Camera.main;
-        GameObject bulletGO = Instantiate(bullet, muzzleFlash.transform.position, fpsCam.transform.rotation);
-        Destroy(bulletGO, 10f);
         RaycastHit hit;
         if (Physics.Raycast(fpsCam.transform.position, fpsCam.transform.forward, out hit, range))
         {
