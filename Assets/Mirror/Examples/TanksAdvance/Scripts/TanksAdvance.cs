@@ -13,77 +13,86 @@ using UnityEngine.AI;
 
 public class TanksAdvance : NetworkBehaviour
 {
-    [Header("Components")]
-    public NavMeshAgent agent;
+    [Header("Components")] public NavMeshAgent agent;
+
     public Animator animator;
 
-    [Header("Movement")]
-    public float rotationSpeed = 100;
-
-    [Header("Firing")]
-    public KeyCode shootKey = KeyCode.Space;
-    public GameObject projectilePrefab;
-    public Transform projectileMount;
-
-
-    void Update()
-    {
-        // movement for local player
-        if (isDead) return;  //jesus edit
-        if (!isLocalPlayer) return;
-
-        // rotate
-        float horizontal = Input.GetAxis("Horizontal");
-        transform.Rotate(0, horizontal * rotationSpeed * Time.deltaTime, 0);
-
-        // move
-        float vertical = Input.GetAxis("Vertical");
-        Vector3 forward = transform.TransformDirection(Vector3.forward);
-        agent.velocity = forward * Mathf.Max(vertical, 0) * agent.speed;
-        animator.SetBool("Moving", agent.velocity != Vector3.zero);
-
-        // shoot
-        if (Input.GetKeyDown(shootKey))
-        {
-            CmdFire();
-        }
-    }
-
-    // this is called on the server
-    [Command]
-    void CmdFire()
-    {
-        GameObject projectile = Instantiate(projectilePrefab, projectileMount.position, transform.rotation);
-        NetworkServer.Spawn(projectile);
-        RpcOnFire();
-    }
-
-    // this is called on the tank that fired for all observers
-    [ClientRpc]
-    void RpcOnFire()
-    {
-        animator.SetTrigger("Shoot");
-    }
+    [SyncVar(hook = nameof(OnHPChanged))] public int currentHP = 10;
 
 
     ///////////////////////////////// ///////////////////////////////// /////////////////////////////////
     // Edits from the original tank will mostly go under here       
 
 
-    [Header("Advance")]
-    public GameObject[] hideOnDeath;
-    public TextMesh textMesh;
+    [Header("Advance")] public GameObject[] hideOnDeath;
+
+    [SyncVar(hook = nameof(SetDeathState))]
+    public bool isDead;
 
     [SyncVar(hook = nameof(OnNameChanged))]
     public string playerName;
-    void OnNameChanged(string _Old, string _New) { UpdatePlayerInfo(); }
 
-    [SyncVar(hook = nameof(OnHPChanged))]
-    public int currentHP = 10;
-    void OnHPChanged(int _Old, int _New) { UpdatePlayerInfo(); }
+    public Transform projectileMount;
+    public GameObject projectilePrefab;
 
-    [SyncVar(hook = nameof(SetDeathState))]
-    public bool isDead = false;
+    [Header("Movement")] public float rotationSpeed = 100;
+
+
+    ///////////////////////////////// ///////////////////////////////// /////////////////////////////////
+    // These are for SceneBrain
+
+    public SceneBrain sceneBrain;
+
+    [Header("Firing")] public KeyCode shootKey = KeyCode.Space;
+
+    public TextMesh textMesh;
+
+
+    private void Update()
+    {
+        // movement for local player
+        if (isDead) return; //jesus edit
+        if (!isLocalPlayer) return;
+
+        // rotate
+        var horizontal = Input.GetAxis("Horizontal");
+        transform.Rotate(0, horizontal * rotationSpeed * Time.deltaTime, 0);
+
+        // move
+        var vertical = Input.GetAxis("Vertical");
+        var forward = transform.TransformDirection(Vector3.forward);
+        agent.velocity = forward * Mathf.Max(vertical, 0) * agent.speed;
+        animator.SetBool("Moving", agent.velocity != Vector3.zero);
+
+        // shoot
+        if (Input.GetKeyDown(shootKey)) CmdFire();
+    }
+
+    // this is called on the server
+    [Command]
+    private void CmdFire()
+    {
+        var projectile = Instantiate(projectilePrefab, projectileMount.position, transform.rotation);
+        NetworkServer.Spawn(projectile);
+        RpcOnFire();
+    }
+
+    // this is called on the tank that fired for all observers
+    [ClientRpc]
+    private void RpcOnFire()
+    {
+        animator.SetTrigger("Shoot");
+    }
+
+    private void OnNameChanged(string _Old, string _New)
+    {
+        UpdatePlayerInfo();
+    }
+
+    private void OnHPChanged(int _Old, int _New)
+    {
+        UpdatePlayerInfo();
+    }
 
 
     public override void OnStartLocalPlayer()
@@ -93,7 +102,7 @@ public class TanksAdvance : NetworkBehaviour
         //set random player name and health amount for now
 
         //telling the central scene script which our player object is, as it has authority on, for Cmd calls
-        if (sceneBrain) { sceneBrain.tankAdvance = this; }
+        if (sceneBrain) sceneBrain.tankAdvance = this;
 
         // string name, int health
         CmdSetupPlayer("Player" + Random.Range(100, 999), Random.Range(5, 21));
@@ -106,25 +115,23 @@ public class TanksAdvance : NetworkBehaviour
     }
 
 
-    void UpdatePlayerInfo()
+    private void UpdatePlayerInfo()
     {
         //called from sync var hook, to update player info on screen for all players
         textMesh.text = playerName + "\nHP: " + currentHP;
     }
 
 
-    void SetDeathState(bool oldValue, bool newValue)
+    private void SetDeathState(bool oldValue, bool newValue)
     {
-        if (newValue == true)
-        {
-            foreach (GameObject obj in hideOnDeath) { obj.SetActive(false); }
-            // this.GetComponent<MeshRenderer>().enabled = false; if your player has mesh on main object
-            //collider etc
-        }
+        if (newValue)
+            foreach (var obj in hideOnDeath)
+                obj.SetActive(false);
+        // this.GetComponent<MeshRenderer>().enabled = false; if your player has mesh on main object
+        //collider etc
         else
-        {
-            foreach (GameObject obj in hideOnDeath) { obj.SetActive(true); }
-        }
+            foreach (var obj in hideOnDeath)
+                obj.SetActive(true);
     }
 
 
@@ -133,26 +140,22 @@ public class TanksAdvance : NetworkBehaviour
         if (!isLocalPlayer) return; // or  if (!hasAuthority) return;
 
         if (isDead == false && GUI.Button(new Rect(5, 200, 100, 30), "Damage"))
-        {
             //damage self, good for testing
             CmdTakeDamage(1);
-        }
         if (isDead && GUI.Button(new Rect(5, 240, 100, 30), "Respawn"))
-        {
             //shows only when dead
             CmdRespawn();
-        }
     }
 
     [Command]
-    void CmdTakeDamage(int damage)
+    private void CmdTakeDamage(int damage)
     {
         currentHP -= damage;
-        if (sceneBrain) { sceneBrain.RpcSendMessagePlayer(playerName + " took " + damage + " damage"); }
+        if (sceneBrain) sceneBrain.RpcSendMessagePlayer(playerName + " took " + damage + " damage");
         if (currentHP <= 0)
-        { 
+        {
             isDead = true;
-            if (sceneBrain) { sceneBrain.RpcSendMessagePlayer(playerName + " was defeated."); }
+            if (sceneBrain) sceneBrain.RpcSendMessagePlayer(playerName + " was defeated.");
         }
     }
 
@@ -162,7 +165,7 @@ public class TanksAdvance : NetworkBehaviour
         // set player back to default settings
         isDead = false;
         currentHP = 10; //or code in an original hp variable thats set at begining, then set to that and not 10
-        if (sceneBrain) { sceneBrain.RpcSendMessagePlayer(playerName + " respawned."); }
+        if (sceneBrain) sceneBrain.RpcSendMessagePlayer(playerName + " respawned.");
     }
 
     [Command]
@@ -172,11 +175,11 @@ public class TanksAdvance : NetworkBehaviour
         playerName = _name;
         currentHP = _health;
         RpcAlertJoin();
-        if (sceneBrain) { sceneBrain.RpcSendMessagePlayer(playerName + " joined the game."); }
+        if (sceneBrain) sceneBrain.RpcSendMessagePlayer(playerName + " joined the game.");
     }
 
     [ClientRpc]
-    void RpcAlertJoin()
+    private void RpcAlertJoin()
     {
         // server sends this to all players
         StartCoroutine(AlertJoin());
@@ -190,35 +193,28 @@ public class TanksAdvance : NetworkBehaviour
         //Debug.Log(playerName + " joined the game.");
     }
 
-
-
-
-    ///////////////////////////////// ///////////////////////////////// /////////////////////////////////
-    // These are for SceneBrain
-
-    public SceneBrain sceneBrain;
-    
-    void Awake()
+    private void Awake()
     {
         sceneBrain = GameObject.Find("SceneBrain").GetComponent<SceneBrain>();
     }
-    
+
     [Command]
     public void CmdChangeSceneColor()
     {
-        int sender = connectionToClient.connectionId;
+        var sender = connectionToClient.connectionId;
         Debug.Log("Change Scene color sent by ID: " + sender);
-        if (sceneBrain) { sceneBrain.RandomiseSceneColor(); }
+        if (sceneBrain)
+            sceneBrain.RandomiseSceneColor();
         else
-        {
             Debug.Log("no brain");
-        }
     }
-    
+
     [Command]
     public void CmdSendPlayerMessage()
     {
-        if (sceneBrain) { sceneBrain.RpcSendMessagePlayer(playerName + " says hello " + Random.Range(10, 99)); }
-        else { Debug.Log("no brain"); }
+        if (sceneBrain)
+            sceneBrain.RpcSendMessagePlayer(playerName + " says hello " + Random.Range(10, 99));
+        else
+            Debug.Log("no brain");
     }
 }

@@ -2006,3 +2006,297 @@
 2020-06-11 16:40:28 [TRACE] [enet_host_create:3925] Clearing dispatch queue
 2020-06-11 16:40:28 [TRACE] [enet_host_create:3943] SHOWTIME: Host created successfully.
 2020-06-11 16:43:11 [TRACE] [enet_host_destroy:3948] ENET Host being destroyed.
+2020-06-13 14:27:41 [TRACE] [enet_host_create:3820] ENET Host being created.
+2020-06-13 14:27:41 [TRACE] [enet_host_create:3854] Switching socket to IPv6 version 6 only mode
+2020-06-13 14:27:41 [TRACE] [enet_host_create:3874] START: Buffer Setup
+2020-06-13 14:27:41 [TRACE] [enet_host_create:3880] START: Setup socket options
+2020-06-13 14:27:41 [TRACE] [enet_host_create:3886] START: Address Setup
+2020-06-13 14:27:41 [TRACE] [enet_host_create:3890] START: Channels Setup
+2020-06-13 14:27:41 [TRACE] [enet_host_create:3925] Clearing dispatch queue
+2020-06-13 14:27:41 [TRACE] [enet_host_create:3943] SHOWTIME: Host created successfully.
+2020-06-13 14:27:46 [TRACE] [enet_initialize:4739] Windows Environment: ENet Initialization
+2020-06-13 14:27:46 [TRACE] [enet_host_create:3820] ENET Host being created.
+2020-06-13 14:27:46 [TRACE] [enet_host_create:3854] Switching socket to IPv6 version 6 only mode
+2020-06-13 14:27:46 [TRACE] [enet_host_create:3874] START: Buffer Setup
+2020-06-13 14:27:46 [TRACE] [enet_host_create:3880] START: Setup socket options
+2020-06-13 14:27:46 [TRACE] [enet_host_create:3886] START: Address Setup
+2020-06-13 14:27:46 [TRACE] [enet_host_create:3890] START: Channels Setup
+2020-06-13 14:27:46 [TRACE] [enet_host_create:3925] Clearing dispatch queue
+2020-06-13 14:27:46 [TRACE] [enet_host_create:3943] SHOWTIME: Host created successfully.
+2020-06-13 14:27:46 [TRACE] [enet_host_connect:3973] Connection to host going up
+2020-06-13 14:27:56 [TRACE] [enet_protocol_send_outgoing_commands:2842] Peer 0: 0.000% (+-0.000%) pkt loss, 1 ms RTT (+-0 ms Jitter), 100.00% Throttle, rel. list sizes: 0/0 out, 0/0 in
+2020-06-13 14:27:56 [TRACE] [enet_protocol_send_outgoing_commands:2842] Peer 0: 0.000% (+-0.000%) pkt loss, 1 ms RTT (+-1 ms Jitter), 100.00% Throttle, rel. list sizes: 0/0 out, 0/0 in
+2020-06-13 14:28:03 [TRACE] [enet_host_destroy:3948] ENET Host being destroyed.
+2020-06-13 14:28:03 [TRACE] [enet_host_destroy:3948] ENET Host being destroyed.
+2020-06-13 14:32:11 [TRACE] [enet_deinitialize:4747] Windows Environment: ENet Deinitialization
+2020-06-13 14:34:05 [TRACE] [enet_host_create:3820] ENET Host being created.
+2020-06-13 14:34:05 [TRACE] [enet_host_create:3854] Switching socket to IPv6 version 6 only mode
+2020-06-13 14:34:05 [TRACE] [enet_host_create:3874] START: Buffer Setup
+2020-06-13 14:34:05 [TRACE] [enet_host_create:3880] START: Setup socket options
+2020-06-13 14:34:05 [TRACE] [enet_host_create:3886] START: Address Setup
+2020-06-13 14:34:05 [TRACE] [enet_host_create:3890] START: Channels Setup
+2020-06-13 14:34:05 [TRACE] [enet_host_create:3925] Clearing dispatch queue
+2020-06-13 14:34:05 [TRACE] [enet_host_create:3943] SHOWTIME: Host created successfully.
+2020-06-13 14:34:12 [TRACE] [enet_initialize:4739] Windows Environment: ENet Initialization
+2020-06-13 14:34:12 [TRACE] [enet_host_create:3820] ENET Host being created.
+2020-06-13 14:34:12 [TRACE] [enet_host_create:3854] Switching socket to IPv6 version 6 only mode
+2020-06-13 14:34:12 [TRACE] [enet_host_create:3874] START: Buffer Setup
+2020-06-13 14:34:12 [TRACE] [enet_host_create:3880] START: Setup socket options
+2020-06-13 14:34:12 [TRACE] [enet_host_create:3886] START: Address Setup
+2020-06-13 14:34:12 [TRACE] [enet_host_create:3890] START: Channels Setup
+2020-06-13 14:34:12 [TRACE] [enet_host_create:3925] Clearing dispatch queue
+2020-06-13 14:34:12 [TRACE] [enet_host_create:3943] SHOWTIME: Host created successfully.
+2020-06-13 14:34:12 [TRACE] [enet_host_connect:3973] Connection to host going up
+2020-06-13 14:34:22 [TRACE] [enet_protocol_send_outgoing_commands:2842] Peer 0: 0.000% (+-0.000%) pkt loss, 1 ms RTT (+-0 ms Jitter), 100.00% Throttle, rel. list sizes: 0/0 out, 0/0 in
+2020-06-13 14:34:22 [TRACE] [enet_protocol_send_outgoing_commands:2842] Peer 0: 0.000% (+-0.000%) pkt loss, 1 ms RTT (+-0 ms Jitter), 100.00% Throttle, rel. list sizes: 0/0 out, 0/0 in
+2020-06-13 14:34:32 [TRACE] [enet_protocol_send_outgoing_commands:2842] Peer 0: 1.584% (+-2.773%) pkt loss, 1 ms RTT (+-0 ms Jitter), 100.00% Throttle, rel. list sizes: 0/0 out, 0/0 in
+2020-06-13 14:34:32 [TRACE] [enet_protocol_send_outgoing_commands:2842] Peer 0: 0.961% (+-1.682%) pkt loss, 1 ms RTT (+-0 ms Jitter), 100.00% Throttle, rel. list sizes: 0/0 out, 0/0 in
+2020-06-13 14:34:42 [TRACE] [enet_protocol_send_outgoing_commands:2842] Peer 0: 1.953% (+-2.727%) pkt loss, 1 ms RTT (+-0 ms Jitter), 100.00% Throttle, rel. list sizes: 0/0 out, 0/0 in
+2020-06-13 14:34:42 [TRACE] [enet_protocol_send_outgoing_commands:2842] Peer 0: 0.842% (+-1.472%) pkt loss, 1 ms RTT (+-0 ms Jitter), 100.00% Throttle, rel. list sizes: 0/0 out, 0/0 in
+2020-06-13 14:34:52 [TRACE] [enet_protocol_send_outgoing_commands:2842] Peer 0: 1.709% (+-2.473%) pkt loss, 1 ms RTT (+-0 ms Jitter), 100.00% Throttle, rel. list sizes: 0/0 out, 0/0 in
+2020-06-13 14:34:52 [TRACE] [enet_protocol_send_outgoing_commands:2842] Peer 0: 0.737% (+-1.288%) pkt loss, 1 ms RTT (+-0 ms Jitter), 100.00% Throttle, rel. list sizes: 0/0 out, 0/0 in
+2020-06-13 14:35:02 [TRACE] [enet_protocol_send_outgoing_commands:2842] Peer 0: 1.495% (+-2.229%) pkt loss, 1 ms RTT (+-0 ms Jitter), 100.00% Throttle, rel. list sizes: 0/0 out, 0/0 in
+2020-06-13 14:35:02 [TRACE] [enet_protocol_send_outgoing_commands:2842] Peer 0: 0.645% (+-1.126%) pkt loss, 1 ms RTT (+-0 ms Jitter), 100.00% Throttle, rel. list sizes: 0/0 out, 0/0 in
+2020-06-13 14:35:12 [TRACE] [enet_protocol_send_outgoing_commands:2842] Peer 0: 2.217% (+-2.936%) pkt loss, 1 ms RTT (+-0 ms Jitter), 100.00% Throttle, rel. list sizes: 0/0 out, 0/0 in
+2020-06-13 14:35:12 [TRACE] [enet_protocol_send_outgoing_commands:2842] Peer 0: 1.129% (+-1.692%) pkt loss, 1 ms RTT (+-0 ms Jitter), 100.00% Throttle, rel. list sizes: 0/0 out, 0/0 in
+2020-06-13 14:35:14 [TRACE] [enet_host_destroy:3948] ENET Host being destroyed.
+2020-06-13 14:35:14 [TRACE] [enet_deinitialize:4747] Windows Environment: ENet Deinitialization
+2020-06-13 14:35:20 [TRACE] [enet_host_destroy:3948] ENET Host being destroyed.
+2020-06-13 19:11:45 [TRACE] [enet_host_create:3820] ENET Host being created.
+2020-06-13 19:11:45 [TRACE] [enet_host_create:3854] Switching socket to IPv6 version 6 only mode
+2020-06-13 19:11:45 [TRACE] [enet_host_create:3874] START: Buffer Setup
+2020-06-13 19:11:45 [TRACE] [enet_host_create:3880] START: Setup socket options
+2020-06-13 19:11:45 [TRACE] [enet_host_create:3886] START: Address Setup
+2020-06-13 19:11:45 [TRACE] [enet_host_create:3890] START: Channels Setup
+2020-06-13 19:11:45 [TRACE] [enet_host_create:3925] Clearing dispatch queue
+2020-06-13 19:11:45 [TRACE] [enet_host_create:3943] SHOWTIME: Host created successfully.
+2020-06-13 19:12:13 [TRACE] [enet_host_destroy:3948] ENET Host being destroyed.
+2020-06-13 19:12:55 [TRACE] [enet_host_create:3820] ENET Host being created.
+2020-06-13 19:12:55 [TRACE] [enet_host_create:3854] Switching socket to IPv6 version 6 only mode
+2020-06-13 19:12:55 [TRACE] [enet_host_create:3874] START: Buffer Setup
+2020-06-13 19:12:55 [TRACE] [enet_host_create:3880] START: Setup socket options
+2020-06-13 19:12:55 [TRACE] [enet_host_create:3886] START: Address Setup
+2020-06-13 19:12:55 [TRACE] [enet_host_create:3890] START: Channels Setup
+2020-06-13 19:12:55 [TRACE] [enet_host_create:3925] Clearing dispatch queue
+2020-06-13 19:12:55 [TRACE] [enet_host_create:3943] SHOWTIME: Host created successfully.
+2020-06-13 19:13:11 [TRACE] [enet_host_destroy:3948] ENET Host being destroyed.
+2020-06-13 19:13:51 [TRACE] [enet_host_create:3820] ENET Host being created.
+2020-06-13 19:13:51 [TRACE] [enet_host_create:3854] Switching socket to IPv6 version 6 only mode
+2020-06-13 19:13:51 [TRACE] [enet_host_create:3874] START: Buffer Setup
+2020-06-13 19:13:51 [TRACE] [enet_host_create:3880] START: Setup socket options
+2020-06-13 19:13:51 [TRACE] [enet_host_create:3886] START: Address Setup
+2020-06-13 19:13:51 [TRACE] [enet_host_create:3890] START: Channels Setup
+2020-06-13 19:13:51 [TRACE] [enet_host_create:3925] Clearing dispatch queue
+2020-06-13 19:13:51 [TRACE] [enet_host_create:3943] SHOWTIME: Host created successfully.
+2020-06-13 19:13:59 [TRACE] [enet_host_destroy:3948] ENET Host being destroyed.
+2020-06-13 19:14:46 [TRACE] [enet_initialize:4739] Windows Environment: ENet Initialization
+2020-06-13 19:14:46 [TRACE] [enet_host_create:3820] ENET Host being created.
+2020-06-13 19:14:46 [TRACE] [enet_host_create:3854] Switching socket to IPv6 version 6 only mode
+2020-06-13 19:14:46 [TRACE] [enet_host_create:3874] START: Buffer Setup
+2020-06-13 19:14:46 [TRACE] [enet_host_create:3880] START: Setup socket options
+2020-06-13 19:14:46 [TRACE] [enet_host_create:3886] START: Address Setup
+2020-06-13 19:14:46 [TRACE] [enet_host_create:3890] START: Channels Setup
+2020-06-13 19:14:46 [TRACE] [enet_host_create:3925] Clearing dispatch queue
+2020-06-13 19:14:46 [TRACE] [enet_host_create:3943] SHOWTIME: Host created successfully.
+2020-06-13 19:14:46 [TRACE] [enet_host_connect:3973] Connection to host going up
+2020-06-13 19:14:49 [TRACE] [enet_host_destroy:3948] ENET Host being destroyed.
+2020-06-13 19:14:49 [TRACE] [enet_deinitialize:4747] Windows Environment: ENet Deinitialization
+2020-06-13 19:14:52 [TRACE] [enet_host_create:3820] ENET Host being created.
+2020-06-13 19:14:52 [TRACE] [enet_host_create:3854] Switching socket to IPv6 version 6 only mode
+2020-06-13 19:14:52 [TRACE] [enet_host_create:3874] START: Buffer Setup
+2020-06-13 19:14:52 [TRACE] [enet_host_create:3880] START: Setup socket options
+2020-06-13 19:14:52 [TRACE] [enet_host_create:3886] START: Address Setup
+2020-06-13 19:14:52 [TRACE] [enet_host_create:3890] START: Channels Setup
+2020-06-13 19:14:52 [TRACE] [enet_host_create:3925] Clearing dispatch queue
+2020-06-13 19:14:52 [TRACE] [enet_host_create:3943] SHOWTIME: Host created successfully.
+2020-06-13 19:15:04 [TRACE] [enet_host_destroy:3948] ENET Host being destroyed.
+2020-06-13 19:16:33 [TRACE] [enet_host_create:3820] ENET Host being created.
+2020-06-13 19:16:33 [TRACE] [enet_host_create:3854] Switching socket to IPv6 version 6 only mode
+2020-06-13 19:16:33 [TRACE] [enet_host_create:3874] START: Buffer Setup
+2020-06-13 19:16:33 [TRACE] [enet_host_create:3880] START: Setup socket options
+2020-06-13 19:16:33 [TRACE] [enet_host_create:3886] START: Address Setup
+2020-06-13 19:16:33 [TRACE] [enet_host_create:3890] START: Channels Setup
+2020-06-13 19:16:33 [TRACE] [enet_host_create:3925] Clearing dispatch queue
+2020-06-13 19:16:33 [TRACE] [enet_host_create:3943] SHOWTIME: Host created successfully.
+2020-06-13 19:17:16 [TRACE] [enet_host_destroy:3948] ENET Host being destroyed.
+2020-06-13 19:17:51 [TRACE] [enet_host_create:3820] ENET Host being created.
+2020-06-13 19:17:51 [TRACE] [enet_host_create:3854] Switching socket to IPv6 version 6 only mode
+2020-06-13 19:17:51 [TRACE] [enet_host_create:3874] START: Buffer Setup
+2020-06-13 19:17:51 [TRACE] [enet_host_create:3880] START: Setup socket options
+2020-06-13 19:17:51 [TRACE] [enet_host_create:3886] START: Address Setup
+2020-06-13 19:17:51 [TRACE] [enet_host_create:3890] START: Channels Setup
+2020-06-13 19:17:51 [TRACE] [enet_host_create:3925] Clearing dispatch queue
+2020-06-13 19:17:51 [TRACE] [enet_host_create:3943] SHOWTIME: Host created successfully.
+2020-06-13 19:17:59 [TRACE] [enet_host_destroy:3948] ENET Host being destroyed.
+2020-06-13 19:19:40 [TRACE] [enet_host_create:3820] ENET Host being created.
+2020-06-13 19:19:40 [TRACE] [enet_host_create:3854] Switching socket to IPv6 version 6 only mode
+2020-06-13 19:19:40 [TRACE] [enet_host_create:3874] START: Buffer Setup
+2020-06-13 19:19:40 [TRACE] [enet_host_create:3880] START: Setup socket options
+2020-06-13 19:19:40 [TRACE] [enet_host_create:3886] START: Address Setup
+2020-06-13 19:19:40 [TRACE] [enet_host_create:3890] START: Channels Setup
+2020-06-13 19:19:40 [TRACE] [enet_host_create:3925] Clearing dispatch queue
+2020-06-13 19:19:40 [TRACE] [enet_host_create:3943] SHOWTIME: Host created successfully.
+2020-06-13 19:19:45 [TRACE] [enet_host_destroy:3948] ENET Host being destroyed.
+2020-06-13 19:20:29 [TRACE] [enet_host_create:3820] ENET Host being created.
+2020-06-13 19:20:29 [TRACE] [enet_host_create:3854] Switching socket to IPv6 version 6 only mode
+2020-06-13 19:20:29 [TRACE] [enet_host_create:3874] START: Buffer Setup
+2020-06-13 19:20:29 [TRACE] [enet_host_create:3880] START: Setup socket options
+2020-06-13 19:20:29 [TRACE] [enet_host_create:3886] START: Address Setup
+2020-06-13 19:20:29 [TRACE] [enet_host_create:3890] START: Channels Setup
+2020-06-13 19:20:29 [TRACE] [enet_host_create:3925] Clearing dispatch queue
+2020-06-13 19:20:29 [TRACE] [enet_host_create:3943] SHOWTIME: Host created successfully.
+2020-06-13 19:20:30 [TRACE] [enet_host_destroy:3948] ENET Host being destroyed.
+2020-06-13 19:24:16 [TRACE] [enet_host_create:3820] ENET Host being created.
+2020-06-13 19:24:16 [TRACE] [enet_host_create:3854] Switching socket to IPv6 version 6 only mode
+2020-06-13 19:24:16 [TRACE] [enet_host_create:3874] START: Buffer Setup
+2020-06-13 19:24:16 [TRACE] [enet_host_create:3880] START: Setup socket options
+2020-06-13 19:24:16 [TRACE] [enet_host_create:3886] START: Address Setup
+2020-06-13 19:24:16 [TRACE] [enet_host_create:3890] START: Channels Setup
+2020-06-13 19:24:16 [TRACE] [enet_host_create:3925] Clearing dispatch queue
+2020-06-13 19:24:16 [TRACE] [enet_host_create:3943] SHOWTIME: Host created successfully.
+2020-06-13 19:24:17 [TRACE] [enet_host_destroy:3948] ENET Host being destroyed.
+2020-06-13 20:16:07 [TRACE] [enet_host_create:3820] ENET Host being created.
+2020-06-13 20:16:07 [TRACE] [enet_host_create:3854] Switching socket to IPv6 version 6 only mode
+2020-06-13 20:16:07 [TRACE] [enet_host_create:3874] START: Buffer Setup
+2020-06-13 20:16:07 [TRACE] [enet_host_create:3880] START: Setup socket options
+2020-06-13 20:16:07 [TRACE] [enet_host_create:3886] START: Address Setup
+2020-06-13 20:16:07 [TRACE] [enet_host_create:3890] START: Channels Setup
+2020-06-13 20:16:07 [TRACE] [enet_host_create:3925] Clearing dispatch queue
+2020-06-13 20:16:07 [TRACE] [enet_host_create:3943] SHOWTIME: Host created successfully.
+2020-06-13 20:16:16 [TRACE] [enet_host_destroy:3948] ENET Host being destroyed.
+2020-06-13 20:18:03 [TRACE] [enet_host_create:3820] ENET Host being created.
+2020-06-13 20:18:03 [TRACE] [enet_host_create:3854] Switching socket to IPv6 version 6 only mode
+2020-06-13 20:18:03 [TRACE] [enet_host_create:3874] START: Buffer Setup
+2020-06-13 20:18:03 [TRACE] [enet_host_create:3880] START: Setup socket options
+2020-06-13 20:18:03 [TRACE] [enet_host_create:3886] START: Address Setup
+2020-06-13 20:18:03 [TRACE] [enet_host_create:3890] START: Channels Setup
+2020-06-13 20:18:03 [TRACE] [enet_host_create:3925] Clearing dispatch queue
+2020-06-13 20:18:03 [TRACE] [enet_host_create:3943] SHOWTIME: Host created successfully.
+2020-06-13 20:18:11 [TRACE] [enet_host_destroy:3948] ENET Host being destroyed.
+2020-06-13 20:18:27 [TRACE] [enet_host_create:3820] ENET Host being created.
+2020-06-13 20:18:27 [TRACE] [enet_host_create:3854] Switching socket to IPv6 version 6 only mode
+2020-06-13 20:18:27 [TRACE] [enet_host_create:3874] START: Buffer Setup
+2020-06-13 20:18:27 [TRACE] [enet_host_create:3880] START: Setup socket options
+2020-06-13 20:18:27 [TRACE] [enet_host_create:3886] START: Address Setup
+2020-06-13 20:18:27 [TRACE] [enet_host_create:3890] START: Channels Setup
+2020-06-13 20:18:27 [TRACE] [enet_host_create:3925] Clearing dispatch queue
+2020-06-13 20:18:27 [TRACE] [enet_host_create:3943] SHOWTIME: Host created successfully.
+2020-06-13 20:18:33 [TRACE] [enet_host_destroy:3948] ENET Host being destroyed.
+2020-06-13 20:18:54 [TRACE] [enet_host_create:3820] ENET Host being created.
+2020-06-13 20:18:54 [TRACE] [enet_host_create:3854] Switching socket to IPv6 version 6 only mode
+2020-06-13 20:18:54 [TRACE] [enet_host_create:3874] START: Buffer Setup
+2020-06-13 20:18:54 [TRACE] [enet_host_create:3880] START: Setup socket options
+2020-06-13 20:18:54 [TRACE] [enet_host_create:3886] START: Address Setup
+2020-06-13 20:18:54 [TRACE] [enet_host_create:3890] START: Channels Setup
+2020-06-13 20:18:54 [TRACE] [enet_host_create:3925] Clearing dispatch queue
+2020-06-13 20:18:54 [TRACE] [enet_host_create:3943] SHOWTIME: Host created successfully.
+2020-06-13 20:19:10 [TRACE] [enet_host_destroy:3948] ENET Host being destroyed.
+2020-06-13 20:19:30 [TRACE] [enet_host_create:3820] ENET Host being created.
+2020-06-13 20:19:30 [TRACE] [enet_host_create:3854] Switching socket to IPv6 version 6 only mode
+2020-06-13 20:19:30 [TRACE] [enet_host_create:3874] START: Buffer Setup
+2020-06-13 20:19:30 [TRACE] [enet_host_create:3880] START: Setup socket options
+2020-06-13 20:19:30 [TRACE] [enet_host_create:3886] START: Address Setup
+2020-06-13 20:19:30 [TRACE] [enet_host_create:3890] START: Channels Setup
+2020-06-13 20:19:30 [TRACE] [enet_host_create:3925] Clearing dispatch queue
+2020-06-13 20:19:30 [TRACE] [enet_host_create:3943] SHOWTIME: Host created successfully.
+2020-06-13 20:19:33 [TRACE] [enet_host_destroy:3948] ENET Host being destroyed.
+2020-06-13 20:21:16 [TRACE] [enet_host_create:3820] ENET Host being created.
+2020-06-13 20:21:16 [TRACE] [enet_host_create:3854] Switching socket to IPv6 version 6 only mode
+2020-06-13 20:21:16 [TRACE] [enet_host_create:3874] START: Buffer Setup
+2020-06-13 20:21:16 [TRACE] [enet_host_create:3880] START: Setup socket options
+2020-06-13 20:21:16 [TRACE] [enet_host_create:3886] START: Address Setup
+2020-06-13 20:21:16 [TRACE] [enet_host_create:3890] START: Channels Setup
+2020-06-13 20:21:16 [TRACE] [enet_host_create:3925] Clearing dispatch queue
+2020-06-13 20:21:16 [TRACE] [enet_host_create:3943] SHOWTIME: Host created successfully.
+2020-06-13 20:21:18 [TRACE] [enet_initialize:4739] Windows Environment: ENet Initialization
+2020-06-13 20:21:18 [TRACE] [enet_host_create:3820] ENET Host being created.
+2020-06-13 20:21:18 [TRACE] [enet_host_create:3854] Switching socket to IPv6 version 6 only mode
+2020-06-13 20:21:18 [TRACE] [enet_host_create:3874] START: Buffer Setup
+2020-06-13 20:21:18 [TRACE] [enet_host_create:3880] START: Setup socket options
+2020-06-13 20:21:18 [TRACE] [enet_host_create:3886] START: Address Setup
+2020-06-13 20:21:18 [TRACE] [enet_host_create:3890] START: Channels Setup
+2020-06-13 20:21:18 [TRACE] [enet_host_create:3925] Clearing dispatch queue
+2020-06-13 20:21:18 [TRACE] [enet_host_create:3943] SHOWTIME: Host created successfully.
+2020-06-13 20:21:18 [TRACE] [enet_host_connect:3973] Connection to host going up
+2020-06-13 20:21:28 [TRACE] [enet_protocol_send_outgoing_commands:2842] Peer 0: 0.000% (+-0.000%) pkt loss, 1 ms RTT (+-0 ms Jitter), 100.00% Throttle, rel. list sizes: 0/0 out, 0/0 in
+2020-06-13 20:21:28 [TRACE] [enet_protocol_send_outgoing_commands:2842] Peer 0: 0.000% (+-0.000%) pkt loss, 1 ms RTT (+-0 ms Jitter), 100.00% Throttle, rel. list sizes: 0/0 out, 0/0 in
+2020-06-13 20:21:32 [TRACE] [enet_host_destroy:3948] ENET Host being destroyed.
+2020-06-13 20:21:32 [TRACE] [enet_host_destroy:3948] ENET Host being destroyed.
+2020-06-13 20:21:35 [TRACE] [enet_deinitialize:4747] Windows Environment: ENet Deinitialization
+2020-06-13 20:23:49 [TRACE] [enet_host_create:3820] ENET Host being created.
+2020-06-13 20:23:49 [TRACE] [enet_host_create:3854] Switching socket to IPv6 version 6 only mode
+2020-06-13 20:23:49 [TRACE] [enet_host_create:3874] START: Buffer Setup
+2020-06-13 20:23:49 [TRACE] [enet_host_create:3880] START: Setup socket options
+2020-06-13 20:23:49 [TRACE] [enet_host_create:3886] START: Address Setup
+2020-06-13 20:23:49 [TRACE] [enet_host_create:3890] START: Channels Setup
+2020-06-13 20:23:49 [TRACE] [enet_host_create:3925] Clearing dispatch queue
+2020-06-13 20:23:49 [TRACE] [enet_host_create:3943] SHOWTIME: Host created successfully.
+2020-06-13 20:24:03 [TRACE] [enet_initialize:4739] Windows Environment: ENet Initialization
+2020-06-13 20:24:03 [TRACE] [enet_host_create:3820] ENET Host being created.
+2020-06-13 20:24:03 [TRACE] [enet_host_create:3854] Switching socket to IPv6 version 6 only mode
+2020-06-13 20:24:03 [TRACE] [enet_host_create:3874] START: Buffer Setup
+2020-06-13 20:24:03 [TRACE] [enet_host_create:3880] START: Setup socket options
+2020-06-13 20:24:03 [TRACE] [enet_host_create:3886] START: Address Setup
+2020-06-13 20:24:03 [TRACE] [enet_host_create:3890] START: Channels Setup
+2020-06-13 20:24:03 [TRACE] [enet_host_create:3925] Clearing dispatch queue
+2020-06-13 20:24:03 [TRACE] [enet_host_create:3943] SHOWTIME: Host created successfully.
+2020-06-13 20:24:03 [TRACE] [enet_host_connect:3973] Connection to host going up
+2020-06-13 20:24:13 [TRACE] [enet_protocol_send_outgoing_commands:2842] Peer 0: 0.000% (+-0.000%) pkt loss, 1 ms RTT (+-0 ms Jitter), 100.00% Throttle, rel. list sizes: 0/0 out, 0/0 in
+2020-06-13 20:24:13 [TRACE] [enet_protocol_send_outgoing_commands:2842] Peer 0: 0.000% (+-0.000%) pkt loss, 1 ms RTT (+-0 ms Jitter), 100.00% Throttle, rel. list sizes: 0/0 out, 0/0 in
+2020-06-13 20:24:23 [TRACE] [enet_protocol_send_outgoing_commands:2842] Peer 0: 0.893% (+-1.563%) pkt loss, 1 ms RTT (+-1 ms Jitter), 100.00% Throttle, rel. list sizes: 0/0 out, 0/0 in
+2020-06-13 20:24:23 [TRACE] [enet_protocol_send_outgoing_commands:2842] Peer 0: 0.000% (+-0.000%) pkt loss, 1 ms RTT (+-0 ms Jitter), 100.00% Throttle, rel. list sizes: 0/0 out, 0/0 in
+2020-06-13 20:24:30 [TRACE] [enet_host_destroy:3948] ENET Host being destroyed.
+2020-06-13 20:24:30 [TRACE] [enet_host_destroy:3948] ENET Host being destroyed.
+2020-06-13 20:24:31 [TRACE] [enet_deinitialize:4747] Windows Environment: ENet Deinitialization
+2020-06-13 20:27:31 [TRACE] [enet_host_create:3820] ENET Host being created.
+2020-06-13 20:27:31 [TRACE] [enet_host_create:3854] Switching socket to IPv6 version 6 only mode
+2020-06-13 20:27:31 [TRACE] [enet_host_create:3874] START: Buffer Setup
+2020-06-13 20:27:31 [TRACE] [enet_host_create:3880] START: Setup socket options
+2020-06-13 20:27:31 [TRACE] [enet_host_create:3886] START: Address Setup
+2020-06-13 20:27:31 [TRACE] [enet_host_create:3890] START: Channels Setup
+2020-06-13 20:27:31 [TRACE] [enet_host_create:3925] Clearing dispatch queue
+2020-06-13 20:27:31 [TRACE] [enet_host_create:3943] SHOWTIME: Host created successfully.
+2020-06-13 20:27:48 [TRACE] [enet_protocol_send_outgoing_commands:2842] Peer 0: 0.000% (+-0.000%) pkt loss, 1 ms RTT (+-0 ms Jitter), 100.00% Throttle, rel. list sizes: 0/0 out, 0/0 in
+2020-06-13 20:27:53 [TRACE] [enet_protocol_send_outgoing_commands:2842] Peer 1: 0.000% (+-0.000%) pkt loss, 1 ms RTT (+-0 ms Jitter), 100.00% Throttle, rel. list sizes: 0/0 out, 0/0 in
+2020-06-13 20:27:58 [TRACE] [enet_protocol_send_outgoing_commands:2842] Peer 0: 0.000% (+-0.000%) pkt loss, 1 ms RTT (+-0 ms Jitter), 100.00% Throttle, rel. list sizes: 0/0 out, 0/0 in
+2020-06-13 20:28:03 [TRACE] [enet_protocol_send_outgoing_commands:2842] Peer 1: 0.430% (+-0.754%) pkt loss, 1 ms RTT (+-0 ms Jitter), 100.00% Throttle, rel. list sizes: 0/0 out, 0/0 in
+2020-06-13 20:28:08 [TRACE] [enet_protocol_send_outgoing_commands:2842] Peer 0: 0.000% (+-0.000%) pkt loss, 1 ms RTT (+-0 ms Jitter), 100.00% Throttle, rel. list sizes: 0/0 out, 0/0 in
+2020-06-13 20:28:13 [TRACE] [enet_protocol_send_outgoing_commands:2842] Peer 1: 0.377% (+-0.659%) pkt loss, 1 ms RTT (+-0 ms Jitter), 100.00% Throttle, rel. list sizes: 0/0 out, 0/0 in
+2020-06-13 20:28:18 [TRACE] [enet_protocol_send_outgoing_commands:2842] Peer 0: 0.543% (+-0.951%) pkt loss, 1 ms RTT (+-0 ms Jitter), 100.00% Throttle, rel. list sizes: 0/0 out, 0/0 in
+2020-06-13 20:28:23 [TRACE] [enet_protocol_send_outgoing_commands:2842] Peer 1: 0.331% (+-0.577%) pkt loss, 1 ms RTT (+-0 ms Jitter), 100.00% Throttle, rel. list sizes: 0/0 out, 0/0 in
+2020-06-13 20:28:28 [TRACE] [enet_protocol_send_outgoing_commands:2842] Peer 0: 0.476% (+-0.833%) pkt loss, 1 ms RTT (+-0 ms Jitter), 100.00% Throttle, rel. list sizes: 0/0 out, 0/0 in
+2020-06-13 20:28:33 [TRACE] [enet_protocol_send_outgoing_commands:2842] Peer 1: 0.290% (+-0.505%) pkt loss, 1 ms RTT (+-0 ms Jitter), 100.00% Throttle, rel. list sizes: 0/0 out, 0/0 in
+2020-06-13 20:28:38 [TRACE] [enet_host_destroy:3948] ENET Host being destroyed.
+2020-06-13 20:29:05 [TRACE] [enet_host_create:3820] ENET Host being created.
+2020-06-13 20:29:05 [TRACE] [enet_host_create:3854] Switching socket to IPv6 version 6 only mode
+2020-06-13 20:29:05 [TRACE] [enet_host_create:3874] START: Buffer Setup
+2020-06-13 20:29:05 [TRACE] [enet_host_create:3880] START: Setup socket options
+2020-06-13 20:29:05 [TRACE] [enet_host_create:3886] START: Address Setup
+2020-06-13 20:29:05 [TRACE] [enet_host_create:3890] START: Channels Setup
+2020-06-13 20:29:05 [TRACE] [enet_host_create:3925] Clearing dispatch queue
+2020-06-13 20:29:05 [TRACE] [enet_host_create:3943] SHOWTIME: Host created successfully.
+2020-06-13 20:29:09 [TRACE] [enet_host_destroy:3948] ENET Host being destroyed.
+2020-06-13 20:38:15 [TRACE] [enet_host_create:3820] ENET Host being created.
+2020-06-13 20:38:15 [TRACE] [enet_host_create:3854] Switching socket to IPv6 version 6 only mode
+2020-06-13 20:38:15 [TRACE] [enet_host_create:3874] START: Buffer Setup
+2020-06-13 20:38:15 [TRACE] [enet_host_create:3880] START: Setup socket options
+2020-06-13 20:38:15 [TRACE] [enet_host_create:3886] START: Address Setup
+2020-06-13 20:38:15 [TRACE] [enet_host_create:3890] START: Channels Setup
+2020-06-13 20:38:15 [TRACE] [enet_host_create:3925] Clearing dispatch queue
+2020-06-13 20:38:15 [TRACE] [enet_host_create:3943] SHOWTIME: Host created successfully.
+2020-06-13 20:38:50 [TRACE] [enet_protocol_send_outgoing_commands:2842] Peer 0: 0.000% (+-0.000%) pkt loss, 1 ms RTT (+-0 ms Jitter), 100.00% Throttle, rel. list sizes: 0/0 out, 0/0 in
+2020-06-13 20:39:00 [TRACE] [enet_protocol_send_outgoing_commands:2842] Peer 0: 0.391% (+-0.684%) pkt loss, 1 ms RTT (+-0 ms Jitter), 100.00% Throttle, rel. list sizes: 0/0 out, 0/0 in
+2020-06-13 20:39:10 [TRACE] [enet_protocol_send_outgoing_commands:2842] Peer 0: 0.841% (+-1.302%) pkt loss, 1 ms RTT (+-0 ms Jitter), 100.00% Throttle, rel. list sizes: 0/0 out, 0/0 in
+2020-06-13 20:39:20 [TRACE] [enet_protocol_send_outgoing_commands:2842] Peer 0: 2.235% (+-3.416%) pkt loss, 1 ms RTT (+-0 ms Jitter), 100.00% Throttle, rel. list sizes: 0/0 out, 0/0 in
+2020-06-13 20:39:30 [TRACE] [enet_protocol_send_outgoing_commands:2842] Peer 0: 1.956% (+-3.052%) pkt loss, 1 ms RTT (+-0 ms Jitter), 100.00% Throttle, rel. list sizes: 0/0 out, 0/0 in
+2020-06-13 20:39:40 [TRACE] [enet_protocol_send_outgoing_commands:2842] Peer 0: 1.712% (+-2.716%) pkt loss, 1 ms RTT (+-0 ms Jitter), 100.00% Throttle, rel. list sizes: 0/0 out, 0/0 in
+2020-06-13 20:39:47 [TRACE] [enet_host_destroy:3948] ENET Host being destroyed.
+2020-06-13 20:41:27 [TRACE] [enet_host_create:3820] ENET Host being created.
+2020-06-13 20:41:27 [TRACE] [enet_host_create:3854] Switching socket to IPv6 version 6 only mode
+2020-06-13 20:41:27 [TRACE] [enet_host_create:3874] START: Buffer Setup
+2020-06-13 20:41:27 [TRACE] [enet_host_create:3880] START: Setup socket options
+2020-06-13 20:41:27 [TRACE] [enet_host_create:3886] START: Address Setup
+2020-06-13 20:41:27 [TRACE] [enet_host_create:3890] START: Channels Setup
+2020-06-13 20:41:27 [TRACE] [enet_host_create:3925] Clearing dispatch queue
+2020-06-13 20:41:27 [TRACE] [enet_host_create:3943] SHOWTIME: Host created successfully.
+2020-06-13 20:41:59 [TRACE] [enet_host_destroy:3948] ENET Host being destroyed.

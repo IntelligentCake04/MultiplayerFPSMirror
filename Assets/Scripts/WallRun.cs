@@ -1,116 +1,100 @@
-﻿using System.Collections;
-using UnityEngine;
+﻿using UnityEngine;
 
-public class WallRun : MonoBehaviour
+namespace IntelligentCake
 {
-    [SerializeField] private float rayCastMaxDistance = 2;
-    public bool isWallR = false;
-    public bool isWallL = false;
-    private RaycastHit hitR;
-    private RaycastHit hitL;
-    private int jumpCount = 0;
-    public PlayerMovement cc;
-    public Rigidbody rb;
-    public Transform cameraEffect;
-    public Animator anim;
-    public bool canJump;
-    public float jumpForce = 25;
-
-    // Use this for initialization
-    void Start()
+    public class WallRun : MonoBehaviour
     {
+        public Animator anim;
+        public Transform cameraEffect;
+        public bool canJump;
+        public PlayerMovement cc;
+        private RaycastHit hitL;
+        private RaycastHit hitR;
+        public bool isWallL;
+        public bool isWallR;
+        private int jumpCount;
+        public float jumpForce = 25;
+        [SerializeField] private float rayCastMaxDistance = 2;
+        public Rigidbody rb;
 
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        if (cc.grounded)
+        // Use this for initialization
+        private void Start()
         {
-            jumpCount = 0;
-            isWallL = false;
-            isWallR = false;
-        }
-        if (isWallR == true && isWallL == false)
-        {
-
-            anim.SetBool("Left", true);
-        }
-        if (isWallR == false)
-        {
-
-            anim.SetBool("Left", false);
-        }
-        if (isWallL == false)
-        {
-
-            anim.SetBool("Right", false);
-        }
-        if (isWallR == false && isWallL == true)
-        {
-
-            anim.SetBool("Right", true);
         }
 
-        if (canJump == true && Input.GetKeyDown(KeyCode.Space))
+        // Update is called once per frame
+        private void Update()
         {
-            rb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
-            if (isWallL == true)
+            if (cc.grounded)
             {
-                Vector3 force = this.transform.right * jumpForce;
-                rb.AddForceAtPosition(force, this.transform.position, ForceMode.Impulse);
+                jumpCount = 0;
+                isWallL = false;
+                isWallR = false;
             }
-            if (isWallR == true)
-            {
-                Vector3 force = -this.transform.right * jumpForce;
-                rb.AddForceAtPosition(force, this.transform.position, ForceMode.Impulse);
-            }
-        }
 
-        if (!cc.grounded)
-        {
-            if (Physics.Raycast(transform.position, transform.right, out hitR, rayCastMaxDistance))
+            if (isWallR && isWallL == false) anim.SetBool("Left", true);
+            if (isWallR == false) anim.SetBool("Left", false);
+            if (isWallL == false) anim.SetBool("Right", false);
+            if (isWallR == false && isWallL) anim.SetBool("Right", true);
+
+            if (canJump && Input.GetKeyDown(KeyCode.Space))
             {
-                if (hitR.transform.tag == "Wall")
+                rb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
+                if (isWallL)
                 {
-                    canJump = true;
-                    isWallR = true;
+                    var force = transform.right * jumpForce;
+                    rb.AddForceAtPosition(force, transform.position, ForceMode.Impulse);
+                }
+
+                if (isWallR)
+                {
+                    var force = -transform.right * jumpForce;
+                    rb.AddForceAtPosition(force, transform.position, ForceMode.Impulse);
+                }
+            }
+
+            if (!cc.grounded)
+            {
+                if (Physics.Raycast(transform.position, transform.right, out hitR, rayCastMaxDistance))
+                    if (hitR.transform.tag == "Wall")
+                    {
+                        canJump = true;
+                        isWallR = true;
+                        isWallL = false;
+                        jumpCount += 1;
+
+                        rb.useGravity = false;
+                    }
+
+                if (!Physics.Raycast(transform.position, transform.right, out hitR, rayCastMaxDistance))
+                {
+                    isWallR = false;
+                    jumpCount += 1;
+                    if (isWallL == false)
+                    {
+                        canJump = false;
+                        rb.useGravity = true;
+                    }
+                }
+
+                if (Physics.Raycast(transform.position, -transform.right, out hitL, rayCastMaxDistance))
+                    if (hitL.transform.tag == "Wall")
+                    {
+                        canJump = true;
+                        isWallL = true;
+                        jumpCount += 1;
+                        rb.useGravity = false;
+                    }
+
+                if (!Physics.Raycast(transform.position, -transform.right, out hitL, rayCastMaxDistance))
+                {
                     isWallL = false;
                     jumpCount += 1;
-
-                    rb.useGravity = false;
-                }
-            }
-            if (!Physics.Raycast(transform.position, transform.right, out hitR, rayCastMaxDistance))
-            {
-
-                isWallR = false;
-                jumpCount += 1;
-                if (isWallL == false)
-                {
-                    canJump = false;
-                    rb.useGravity = true;
-                }
-            }
-            if (Physics.Raycast(transform.position, -transform.right, out hitL, rayCastMaxDistance))
-            {
-                if (hitL.transform.tag == "Wall")
-                {
-                    canJump = true;
-                    isWallL = true;
-                    jumpCount += 1;
-                    rb.useGravity = false;
-                }
-            }
-            if (!Physics.Raycast(transform.position, -transform.right, out hitL, rayCastMaxDistance))
-            {
-
-                isWallL = false;
-                jumpCount += 1;
-                if (isWallR == false)
-                {
-                    canJump = false;
-                    rb.useGravity = true;
+                    if (isWallR == false)
+                    {
+                        canJump = false;
+                        rb.useGravity = true;
+                    }
                 }
             }
         }

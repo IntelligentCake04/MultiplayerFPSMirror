@@ -1,25 +1,27 @@
 ﻿using UnityEngine;
-using System.Collections;
- 
+
 namespace EpicToonFX
 {
     public class ETFXRotation : MonoBehaviour
     {
- 
+        public enum spaceEnum
+        {
+            Local,
+            World
+        }
+
+        public spaceEnum rotateSpace;
+
         [Header("Rotate axises by degrees per second")]
         public Vector3 rotateVector = Vector3.zero;
- 
-        public enum spaceEnum { Local, World };
-        public spaceEnum rotateSpace;
- 
+
         // Use this for initialization
-        void Start()
+        private void Start()
         {
- 
         }
- 
+
         // Update is called once per frame
-        void Update()
+        private void Update()
         {
             if (rotateSpace == spaceEnum.Local)
                 transform.Rotate(rotateVector * Time.deltaTime);

@@ -1,18 +1,22 @@
-﻿using UnityEngine;
-using Mirror;
+﻿using Mirror;
+using UnityEngine;
 
-public class MoveCamera : NetworkBehaviour
+namespace IntelligentCake
 {
-    public GameObject weaponHolder;
-    public Transform head;
-    public override void OnStartLocalPlayer()
+    public class MoveCamera : NetworkBehaviour
     {
-        base.OnStartLocalPlayer();
-        Camera.main.orthographic = false;
-        Camera.main.transform.SetParent(head.transform);
-        Camera.main.transform.localPosition = Vector3.zero;
-        Camera.main.transform.localEulerAngles = Vector3.zero;
+        public Transform head;
+        public GameObject weaponHolder;
 
-        weaponHolder.transform.SetParent(Camera.main.transform);
+        public override void OnStartLocalPlayer()
+        {
+            base.OnStartLocalPlayer();
+            Camera.main.orthographic = false;
+            Camera.main.transform.SetParent(head.transform);
+            Camera.main.transform.localPosition = Vector3.zero;
+            Camera.main.transform.localEulerAngles = Vector3.zero;
+
+            weaponHolder.transform.SetParent(Camera.main.transform);
+        }
     }
 }

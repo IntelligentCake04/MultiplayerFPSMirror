@@ -1,35 +1,35 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using Mirror;
+﻿using Mirror;
 using UnityEngine;
-using UnityEngine.UI;
 using UnityEngine.SceneManagement;
-using System.Linq;
+using UnityEngine.UI;
 
 public class SceneBrain : NetworkBehaviour
 {
-    //floor
-    public GameObject sceneObjectToChangeColour;
-    private Material sceneMaterialClone;
-    //this will be the players prefab
-    public TanksAdvance tankAdvance;
     public Text canvasPlayerMessageText;
 
-///hooook
+    ///hooook
     [SyncVar(hook = nameof(OnChangedSceneColor))]
     public Color sceneColor = Color.white;
 
-    void OnChangedSceneColor(Color _Old, Color _New)
+    private Material sceneMaterialClone;
+
+    //floor
+    public GameObject sceneObjectToChangeColour;
+
+    //this will be the players prefab
+    public TanksAdvance tankAdvance;
+
+    private void OnChangedSceneColor(Color _Old, Color _New)
     {
         sceneMaterialClone = new Material(sceneObjectToChangeColour.GetComponent<Renderer>().material);
         sceneMaterialClone.color = _New;
         sceneObjectToChangeColour.GetComponent<Renderer>().material = sceneMaterialClone;
     }
-///end hooook
 
+    ///end hooook
 
     // Network identity/behaviour scene scripts are disabled until the player is ready (usually when presses host/join button)
-    void Start()
+    private void Start()
     {
         Debug.Log("isServer: " + isServer);
     }
@@ -38,10 +38,9 @@ public class SceneBrain : NetworkBehaviour
     public void ButtonServerChangeScene()
     {
         if (isServer)
-        {
             NetworkManager.singleton.ServerChangeScene(SceneManager.GetActiveScene().name);
-        }
-        else { Debug.Log("Access Denied isServer: " + isServer); }
+        else
+            Debug.Log("Access Denied isServer: " + isServer);
     }
 
     //Host and Client can both use
@@ -54,22 +53,22 @@ public class SceneBrain : NetworkBehaviour
         }
         else
         {
-            if (tankAdvance) { tankAdvance.CmdChangeSceneColor(); }
+            if (tankAdvance) tankAdvance.CmdChangeSceneColor();
         }
     }
 
     public void ButtonPlayerMessage()
     {
-        if (tankAdvance) { tankAdvance.CmdSendPlayerMessage(); }
+        if (tankAdvance) tankAdvance.CmdSendPlayerMessage();
     }
-    
+
     [ClientRpc]
     public void RpcSendMessagePlayer(string _value)
     {
         //Debug.Log("RpcSendMessagePlayer " + _value);
         canvasPlayerMessageText.text = _value;
     }
-    
+
     public void RandomiseSceneColor()
     {
         //Debug.Log("RandomiseSceneColor: " + isServer);

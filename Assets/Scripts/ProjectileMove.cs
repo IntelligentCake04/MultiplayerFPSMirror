@@ -1,31 +1,28 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
-public class ProjectileMove : MonoBehaviour
+namespace IntelligentCake
 {
-    public float speed;
-    // Start is called before the first frame update
-    void Start()
+    public class ProjectileMove : MonoBehaviour
     {
+        public float speed;
 
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        if (speed != 0)
+        // Start is called before the first frame update
+        private void Start()
         {
-            transform.position += transform.forward * (speed * Time.deltaTime);
         }
-        else
-        {
-            Debug.Log("No speed");
-        }
-    }
 
-    void OnParticleCollision(GameObject other)
-    {
-        Destroy(gameObject);
+        // Update is called once per frame
+        private void Update()
+        {
+            if (speed != 0)
+                transform.position += transform.forward * (speed * Time.deltaTime);
+            else
+                Debug.Log("No speed");
+        }
+
+        private void OnParticleCollision(GameObject other)
+        {
+            Destroy(gameObject);
+        }
     }
 }

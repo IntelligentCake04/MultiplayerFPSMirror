@@ -1,8 +1,6 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-using Mirror;
 using System.Diagnostics;
+using Mirror;
+using UnityEngine;
 using Debug = UnityEngine.Debug;
 
 public class OnlineTimer : NetworkBehaviour
@@ -22,19 +20,19 @@ public class OnlineTimer : NetworkBehaviour
 
         Debug.Log("Stopwatch started!");
 
-       base.OnStartClient();
+        base.OnStartClient();
     }
 
     public void OnDisable()
     {
-        if(stopwatch.IsRunning)
+        if (stopwatch.IsRunning)
         {
-            System.TimeSpan ts = stopwatch.Elapsed;
+            var ts = stopwatch.Elapsed;
             stopwatch.Stop();
 
             Debug.Log("Stopwatch stopped: duration " + string.Format("{0:00}:{1:00}:{2:00}.{3:00}",
-            ts.Hours, ts.Minutes, ts.Seconds,
-            ts.Milliseconds / 10));
+                ts.Hours, ts.Minutes, ts.Seconds,
+                ts.Milliseconds / 10));
         }
     }
 
@@ -42,8 +40,12 @@ public class OnlineTimer : NetworkBehaviour
     {
         if (!stopwatch.IsRunning) return;
 
-        GUI.Box(new Rect(new Vector2(2, Screen.height - 36), new Vector2(320, 32)), "ONLINE TIME: " + string.Format("{0:00}:{1:00}:{2:00}.{3:00}",
-            stopwatch.Elapsed.Hours, stopwatch.Elapsed.Minutes, stopwatch.Elapsed.Seconds,
-            stopwatch.Elapsed.Milliseconds / 10));
+        GUI.Box(new Rect(new Vector2(2, Screen.height - 36), new Vector2(320, 32)), "ONLINE TIME: " + string.Format(
+            "{0:00}:{1:00}:{2:00}.{3:00}",
+            stopwatch.Elapsed.Hours,
+            stopwatch.Elapsed.Minutes,
+            stopwatch.Elapsed.Seconds,
+            stopwatch.Elapsed.Milliseconds /
+            10));
     }
 }
