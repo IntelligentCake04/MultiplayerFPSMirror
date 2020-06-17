@@ -1,7 +1,7 @@
 ﻿using Mirror;
 using UnityEngine;
 
-namespace IntelligentCake
+namespace IntelligentCake.Player
 {
     public class PlayerEquip : NetworkBehaviour
     {

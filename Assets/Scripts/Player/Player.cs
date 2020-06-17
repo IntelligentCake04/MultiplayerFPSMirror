@@ -1,6 +1,6 @@
 ﻿using Mirror;
 
-namespace IntelligentCake
+namespace IntelligentCake.Player
 {
     public class Player : NetworkBehaviour
     {

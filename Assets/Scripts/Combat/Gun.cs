@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace IntelligentCake
+namespace IntelligentCake.Combat
 {
     public class Gun : MonoBehaviour
     {

@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace IntelligentCake
+namespace IntelligentCake.Player
 {
     public class WallRun : MonoBehaviour
     {

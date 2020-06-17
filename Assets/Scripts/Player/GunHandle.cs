@@ -1,7 +1,8 @@
-﻿using Mirror;
+﻿using IntelligentCake.Combat;
+using Mirror;
 using UnityEngine;
 
-namespace IntelligentCake
+namespace IntelligentCake.Player
 {
     public class GunHandle : NetworkBehaviour
     {
