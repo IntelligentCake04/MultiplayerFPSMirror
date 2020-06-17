@@ -6,49 +6,70 @@ namespace IntelligentCake.Player
 {
     public class GunHandle : NetworkBehaviour
     {
-        private Gun _gun;
+        private const string PlayerTag = "Player";
+        
+        public Gun gun;
+        
+        [SerializeField]
+        public Camera fpsCam;
+
+        [SerializeField] private LayerMask mask;
+        
         private void Start()
         {
-            _gun = GetComponentInChildren<Gun>();
+            fpsCam = Camera.main;
+            if (fpsCam == null)
+            {
+                Debug.LogError("No camera referenced!");
+                this.enabled = false;
+            }
         }
 
         private void Update()
         {
             if (!hasAuthority) return;
-        
-            if (_gun.isAutomatic == false)
-                if (Input.GetButtonDown("Fire1") && Time.time >= _gun.nextTimeToFire)
-                {
-                    _gun.nextTimeToFire = Time.time + 1f / _gun.fireRate;
-                    Shoot();
-                }
 
-            if (_gun.isAutomatic)
-                if (Input.GetButton("Fire1") && Time.time >= _gun.nextTimeToFire)
+            if (gun.isAutomatic == false)
+            {
+                if (Input.GetButtonDown("Fire1") && Time.time >= gun.nextTimeToFire)
                 {
-                    _gun.nextTimeToFire = Time.time + 1f / _gun.fireRate;
+                    gun.nextTimeToFire = Time.time + 1f / gun.fireRate;
                     Shoot();
                 }
+            }
+
+            if (gun.isAutomatic)
+            {
+                if (Input.GetButton("Fire1") && Time.time >= gun.nextTimeToFire)
+                {
+                    gun.nextTimeToFire = Time.time + 1f / gun.fireRate;
+                    Shoot();
+                }
+            }
         }
 
         [Client]
         private void Shoot()
         {
-            if (Physics.Raycast(_gun.fpsCam.transform.position, _gun.fpsCam.transform.forward, out _gun.hit, _gun.range))
+            RaycastHit hit;
+            if (Physics.Raycast(fpsCam.transform.position, fpsCam.transform.forward, out hit, gun.range, mask))
             {
                 /*Debug.Log(hit.transform.name);
 
             Player player = hit.transform.GetComponent<Target>();
-            if (player != null) target.TakeDamage(_gun.damage);*/
+            if (player != null) target.TakeDamage(gun.damage);*/
 
-                CmdPlayerShot();
+                if (hit.collider.tag == PlayerTag)
+                {
+                    CmdPlayerShot(hit.collider.name);
+                }
             }
-        }
+        }    
 
         [Command]
-        private void CmdPlayerShot()
+        void CmdPlayerShot(string id)
         {
-            Debug.Log(_gun.hit.transform.name);
+            Debug.Log(id + " has been shot.");
         }
     }
 }

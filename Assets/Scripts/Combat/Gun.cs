@@ -2,21 +2,14 @@
 
 namespace IntelligentCake.Combat
 {
-    public class Gun : MonoBehaviour
+    [System.Serializable]
+    public class Gun
     {
-        public RaycastHit hit;
-    
-        public float damage = 10f;
-        public float fireRate = 15;
-        public Camera fpsCam;
+        public int damage = 10;
+        public float fireRate = 15f;
 
         public bool isAutomatic;
         public float range = 100f;
         public float nextTimeToFire;
-    
-        private void Start()
-        {
-            fpsCam = Camera.main;
-        }
     }
 }

@@ -246,7 +246,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4092126712594102404}
-  - component: {fileID: 1049759038131669656}
   m_Layer: 0
   m_Name: USP-45
   m_TagString: Untagged
@@ -286,25 +285,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 90, z: 0}
---- !u!114 &1049759038131669656
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1049759038131669655}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bd04ea881eadcdf45b414e46cc30eccc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  damage: 10
-  range: 100
-  fireRate: 10
-  isAutomatic: 0
-  fpsCam: {fileID: 0}
-  muzzleFlash: {fileID: 8065269427144347846}
-  bullet: {fileID: 7640994252540818646, guid: 51755fedeaf3bfd4d83109739ca44ef7, type: 3}
 --- !u!1 &1259705895719958174
 GameObject:
   m_ObjectHideFlags: 0
