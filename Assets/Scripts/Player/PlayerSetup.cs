@@ -18,6 +18,8 @@ namespace IntelligentCake.Player
                 /*DisableComponents();*/
                 AssignRemoteLayer();
             }
+            
+            GetComponent<Player>().Setup();
         }
 
         public override void OnStartClient()
