@@ -1,20 +1,42 @@
-﻿using Mirror;
+﻿using System;
+using Mirror;
+using UnityEngine;
 
 namespace IntelligentCake.Player
 {
     public class Player : NetworkBehaviour
     {
-        public float health = 100f;
+        [SyncVar]
+        private bool _isDead = false;
 
-        public void TakeDamage(float amount)
+        public bool IsDead
         {
-            health -= amount;
-            if (health <= 0f) Die();
+            get => _isDead;
+            protected set => _isDead = value;
         }
 
-        private void Die()
+        [SerializeField]
+        private int maxHealth = 100;
+        
+        [SyncVar]
+        public float currentHealth;
+
+        private void Awake()
         {
-            Destroy(gameObject);
+            SetDefaults();
+        }
+        
+        [ClientRpc]
+        public void RpcTakeDamage(int amount)
+        {
+            currentHealth -= amount;
+            
+            Debug.Log(transform.name + " now has " + currentHealth + " health.");
+        }
+
+        public void SetDefaults()
+        {
+            currentHealth = maxHealth;
         }
     }
 }

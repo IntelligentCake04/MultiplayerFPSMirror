@@ -4,6 +4,7 @@ using UnityEngine;
 
 namespace IntelligentCake.Player
 {
+    [RequireComponent(typeof(Player))]
     public class PlayerSetup : NetworkBehaviour
     {
         /*[SerializeField] private Behaviour[] componentsToDisable;*/
@@ -17,14 +18,16 @@ namespace IntelligentCake.Player
                 /*DisableComponents();*/
                 AssignRemoteLayer();
             }
-            
-            RegisterPlayer();
         }
 
-        private void RegisterPlayer()
+        public override void OnStartClient()
         {
-            string id = "Player " + GetComponent<NetworkIdentity>().netId;
-            transform.name = id;
+            base.OnStartClient();
+
+            string netId = GetComponent<NetworkIdentity>().netId.ToString();
+            Player player = GetComponent<Player>();
+            
+            GameManager.RegisterPlayer(netId, player);
         }
 
         private void AssignRemoteLayer()
@@ -39,5 +42,10 @@ namespace IntelligentCake.Player
                 componentsToDisable[i].enabled = false;
             }
         }*/
+
+        private void OnDisable()
+        {
+            GameManager.UnRegisterPlayer(transform.name);
+        }
     }
 }

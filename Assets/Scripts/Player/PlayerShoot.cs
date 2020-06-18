@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace IntelligentCake.Player
 {
-    public class GunHandle : NetworkBehaviour
+    public class PlayerShoot : NetworkBehaviour
     {
         private const string PlayerTag = "Player";
         
@@ -31,20 +31,29 @@ namespace IntelligentCake.Player
 
             if (gun.isAutomatic == false)
             {
-                if (Input.GetButtonDown("Fire1") && Time.time >= gun.nextTimeToFire)
-                {
-                    gun.nextTimeToFire = Time.time + 1f / gun.fireRate;
-                    Shoot();
-                }
+                SemiAutomaticShoot();
             }
 
             if (gun.isAutomatic)
             {
-                if (Input.GetButton("Fire1") && Time.time >= gun.nextTimeToFire)
-                {
-                    gun.nextTimeToFire = Time.time + 1f / gun.fireRate;
-                    Shoot();
-                }
+                AutomaticShoot();
+            }
+        }
+
+        private void SemiAutomaticShoot()
+        {
+            if (Input.GetButtonDown("Fire1") && Time.time >= gun.nextTimeToFire)
+            {
+                gun.nextTimeToFire = Time.time + 1f / gun.fireRate;
+                Shoot();
+            }
+        }
+        private void AutomaticShoot()
+        {
+            if (Input.GetButton("Fire1") && Time.time >= gun.nextTimeToFire)
+            {
+                gun.nextTimeToFire = Time.time + 1f / gun.fireRate;
+                Shoot();
             }
         }
 
@@ -54,22 +63,20 @@ namespace IntelligentCake.Player
             RaycastHit hit;
             if (Physics.Raycast(fpsCam.transform.position, fpsCam.transform.forward, out hit, gun.range, mask))
             {
-                /*Debug.Log(hit.transform.name);
-
-            Player player = hit.transform.GetComponent<Target>();
-            if (player != null) target.TakeDamage(gun.damage);*/
-
-                if (hit.collider.tag == PlayerTag)
+                if (hit.collider.CompareTag(PlayerTag))
                 {
-                    CmdPlayerShot(hit.collider.name);
+                    CmdPlayerShot(hit.collider.name, gun.damage);
                 }
             }
         }    
 
         [Command]
-        void CmdPlayerShot(string id)
+        void CmdPlayerShot(string playerId, int damage)
         {
-            Debug.Log(id + " has been shot.");
+            Debug.Log(playerId + " has been shot.");
+
+            Player player = GameManager.GetPlayer(playerId);
+            player.RpcTakeDamage(damage);
         }
     }
 }

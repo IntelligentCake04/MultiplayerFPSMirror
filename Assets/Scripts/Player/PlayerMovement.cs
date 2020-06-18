@@ -6,7 +6,7 @@ namespace IntelligentCake.Player
 {
     public class PlayerMovement : NetworkBehaviour
     {
-        private bool cancellingGrounded;
+        private bool _cancellingGrounded;
 
         public float counterMovement = 0.175f;
 
@@ -113,7 +113,7 @@ namespace IntelligentCake.Player
         private void Movement()
         {
             //Extra gravity
-            rb.AddForce(Vector3.down * Time.deltaTime * 10);
+            rb.AddForce(Vector3.down * (Time.deltaTime * 10));
 
             //Find actual velocity relative to where player is looking
             var mag = FindVelRelativeToLook();
@@ -131,7 +131,7 @@ namespace IntelligentCake.Player
             //If sliding down a ramp, add force down so player stays grounded and also builds speed
             if (crouching && grounded && readyToJump)
             {
-                rb.AddForce(Vector3.down * Time.deltaTime * 3000);
+                rb.AddForce(Vector3.down * (Time.deltaTime * 3000));
                 return;
             }
 
@@ -155,8 +155,8 @@ namespace IntelligentCake.Player
             if (grounded && crouching) multiplierV = 0f;
 
             //Apply forces to move player
-            rb.AddForce(orientation.transform.forward * y * moveSpeed * Time.deltaTime * multiplier * multiplierV);
-            rb.AddForce(orientation.transform.right * x * moveSpeed * Time.deltaTime * multiplier);
+            rb.AddForce(orientation.transform.forward * (y * moveSpeed * Time.deltaTime * multiplier * multiplierV));
+            rb.AddForce(orientation.transform.right * (x * moveSpeed * Time.deltaTime * multiplier));
         }
 
         private void Jump()
@@ -166,8 +166,8 @@ namespace IntelligentCake.Player
                 readyToJump = false;
 
                 //Add jump forces
-                rb.AddForce(Vector2.up * jumpForce * 1.5f);
-                rb.AddForce(normalVector * jumpForce * 0.5f);
+                rb.AddForce(Vector2.up * (jumpForce * 1.5f));
+                rb.AddForce(normalVector * (jumpForce * 0.5f));
 
                 //If jumping while falling, reset y velocity.
                 var vel = rb.velocity;
@@ -211,17 +211,17 @@ namespace IntelligentCake.Player
             //Slow down sliding
             if (crouching)
             {
-                rb.AddForce(moveSpeed * Time.deltaTime * -rb.velocity.normalized * slideCounterMovement);
+                rb.AddForce(-rb.velocity.normalized * (moveSpeed * Time.deltaTime * slideCounterMovement));
                 return;
             }
 
             //Counter movement
             if (Math.Abs(mag.x) > threshold && Math.Abs(x) < 0.05f || mag.x < -threshold && x > 0 ||
                 mag.x > threshold && x < 0)
-                rb.AddForce(moveSpeed * orientation.transform.right * Time.deltaTime * -mag.x * counterMovement);
+                rb.AddForce(orientation.transform.right * (moveSpeed * Time.deltaTime * -mag.x * counterMovement));
             if (Math.Abs(mag.y) > threshold && Math.Abs(y) < 0.05f || mag.y < -threshold && y > 0 ||
                 mag.y > threshold && y < 0)
-                rb.AddForce(moveSpeed * orientation.transform.forward * Time.deltaTime * -mag.y * counterMovement);
+                rb.AddForce(orientation.transform.forward * (moveSpeed * Time.deltaTime * -mag.y * counterMovement));
 
             //Limit diagonal running. This will also cause a full stop if sliding fast and un-crouching, so not optimal.
             if (Mathf.Sqrt(Mathf.Pow(rb.velocity.x, 2) + Mathf.Pow(rb.velocity.z, 2)) > maxSpeed)
@@ -276,7 +276,7 @@ namespace IntelligentCake.Player
                 if (IsFloor(normal))
                 {
                     grounded = true;
-                    cancellingGrounded = false;
+                    _cancellingGrounded = false;
                     normalVector = normal;
                     CancelInvoke(nameof(StopGrounded));
                 }
@@ -284,9 +284,9 @@ namespace IntelligentCake.Player
 
             //Invoke ground/wall cancel, since we can't check normals with CollisionExit
             var delay = 3f;
-            if (!cancellingGrounded)
+            if (!_cancellingGrounded)
             {
-                cancellingGrounded = true;
+                _cancellingGrounded = true;
                 Invoke(nameof(StopGrounded), Time.deltaTime * delay);
             }
         }
