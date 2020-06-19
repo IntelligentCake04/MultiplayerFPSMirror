@@ -1,10 +1,29 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace IntelligentCake
 {
     public class GameManager : MonoBehaviour
     {
+        public static GameManager Instance;
+        
+        public MatchSettings matchSettings;
+
+        private void Awake()
+        {
+            if (Instance != null)
+            {
+                Debug.LogError("More than one game manager in scene.");
+            }
+            else
+            {
+                Instance = this;
+            }
+        }
+
+        #region Player Tracking
+        
         private const string PlayerIdPrefix = "Player ";
         
         private static Dictionary<string, Player.Player> _players = new Dictionary<string, Player.Player>();
@@ -39,5 +58,7 @@ namespace IntelligentCake
             GUILayout.EndVertical();
             GUILayout.EndArea();
         }*/
+        
+        #endregion
     }
 }

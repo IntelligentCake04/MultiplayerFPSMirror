@@ -1,4 +1,4 @@
-﻿using System;
+﻿using System.Collections;
 using Mirror;
 using UnityEngine;
 
@@ -73,8 +73,18 @@ namespace IntelligentCake.Player
                 col.enabled = true;
             
             Debug.Log(transform.name + " is DEAD!");
-            
-            // TODO CALL RESPAWN METHOD
+
+            StartCoroutine(Respawn());
+        }
+
+        private IEnumerator Respawn()
+        {
+            yield return new WaitForSeconds(GameManager.Instance.matchSettings.respawnTime);
+            SetDefaults();
+            Transform spawnPoint = NetworkManager.singleton.GetStartPosition();
+            transform.position = spawnPoint.position;
+            transform.rotation = spawnPoint.rotation;
+            Debug.Log(transform.name + " respawned.");
         }
 
         public void SetDefaults()
