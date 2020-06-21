@@ -1,6 +1,7 @@
 ﻿using IntelligentCake.Combat;
 using Mirror;
 using UnityEngine;
+using System.Collections;
 
 namespace IntelligentCake.Player
 {
@@ -23,12 +24,23 @@ namespace IntelligentCake.Player
                 Debug.LogError("No camera referenced!");
                 this.enabled = false;
             }
+
+            gun.currentAmmo = gun.maxAmmo;
         }
 
         private void Update()
         {
             if (!hasAuthority) return;
-
+            
+            if(gun.isReloading)
+                return;
+            
+            if (gun.currentAmmo <= 0)
+            {
+                StartCoroutine(Reload());
+                return;
+            }
+            
             if (gun.isAutomatic == false)
             {
                 SemiAutomaticShoot();
@@ -57,9 +69,21 @@ namespace IntelligentCake.Player
             }
         }
 
+        IEnumerator Reload()
+        {
+            gun.isReloading = true;
+            Debug.Log("Reloading");
+            
+            yield return new WaitForSeconds(gun.reloadTime);
+            
+            gun.currentAmmo = gun.maxAmmo;
+            gun.isReloading = false;
+        }
+
         [Client]
         private void Shoot()
         {
+            gun.currentAmmo--;
             RaycastHit hit;
             if (Physics.Raycast(fpsCam.transform.position, fpsCam.transform.forward, out hit, gun.range, mask))
             {
