@@ -18,7 +18,6 @@ namespace IntelligentCake.Player
         
         private void Start()
         {
-            fpsCam = Camera.main;
             if (fpsCam == null)
             {
                 Debug.LogError("No camera referenced!");

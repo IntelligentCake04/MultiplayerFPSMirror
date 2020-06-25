@@ -187,7 +187,6 @@ namespace IntelligentCake.Player
 
         private void Look()
         {
-            playerCam = Camera.main.transform;
             var mouseX = Input.GetAxis("Mouse X") * sensitivity * Time.fixedDeltaTime * sensMultiplier;
             var mouseY = Input.GetAxis("Mouse Y") * sensitivity * Time.fixedDeltaTime * sensMultiplier;
 
