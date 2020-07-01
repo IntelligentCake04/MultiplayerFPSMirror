@@ -50,10 +50,14 @@ namespace IntelligentCake.Player
 
         //Rotation and look
         private float xRotation;
+        
+        // Animation
+        private Animator _animator;
 
         private void Awake()
         {
             rb = GetComponent<Rigidbody>();
+            _animator = GetComponent<Animator>();
         }
 
         private void Start()
@@ -87,7 +91,8 @@ namespace IntelligentCake.Player
             y = Input.GetAxisRaw("Vertical");
             jumping = Input.GetButton("Jump");
             crouching = Input.GetKey(KeyCode.LeftControl);
-
+            
+            _animator.SetFloat("ForwardVelocity", y);
             //Crouching
             if (Input.GetKeyDown(KeyCode.LeftControl))
                 StartCrouch();
