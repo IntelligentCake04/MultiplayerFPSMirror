@@ -185,6 +185,11 @@ namespace IntelligentCake.Player
             }
         }
 
+        public float GetFallSpeed()
+        {
+            return rb.velocity.y;
+        }
+
         private void ResetJump()
         {
             readyToJump = true;

@@ -9,9 +9,12 @@ namespace IntelligentCake.Player
     {
         [SerializeField] private Behaviour[] componentsToDisable;
 
-        private Camera sceneCamera;
+        private Camera _sceneCamera;
 
         [SerializeField] private string remoteLayerName = "RemotePlayer";
+
+        [SerializeField] private string dontDrawLayerName = "DontDraw";
+        [SerializeField] private GameObject playerGraphics;
 
         private void Start()
         {
@@ -22,14 +25,27 @@ namespace IntelligentCake.Player
             }
             else
             {
-                sceneCamera = Camera.main;
-                if (sceneCamera != null)
+                _sceneCamera = Camera.main;
+                if (_sceneCamera != null)
                 {
-                    sceneCamera.gameObject.SetActive(false);
+                    _sceneCamera.gameObject.SetActive(false);
                 }
+                
+                // Disable player graphics for local player
+                SetLayerRecursively(playerGraphics, LayerMask.NameToLayer(dontDrawLayerName));
             }
             
             GetComponent<Player>().Setup();
+        }
+
+        private void SetLayerRecursively(GameObject obj, int newLayer)
+        {
+            obj.layer = newLayer;
+
+            foreach (Transform child in obj.transform)
+            {
+                SetLayerRecursively(child.gameObject, newLayer);
+            }
         }
 
         public override void OnStartClient()
@@ -57,9 +73,9 @@ namespace IntelligentCake.Player
 
         private void OnDisable()
         {
-            if (sceneCamera != null)
+            if (_sceneCamera != null)
             {
-                sceneCamera.gameObject.SetActive(true);
+                _sceneCamera.gameObject.SetActive(true);
             }
             GameManager.UnRegisterPlayer(transform.name);
         }

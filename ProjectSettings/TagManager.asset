@@ -17,7 +17,7 @@ TagManager:
   - Ground
   - LocalPlayer
   - RemotePlayer
-  - 
+  - DontDraw
   - 
   - 
   - 
