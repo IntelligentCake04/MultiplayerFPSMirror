@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using Mirror;
 using UnityEngine;
 
@@ -32,6 +33,12 @@ namespace IntelligentCake.Player
             }
             
             SetDefaults();
+        }
+
+        private void Start()
+        {
+            SetRigidbodyState(true);
+            SetColliderState(false);
         }
 
         private void Update()
@@ -75,6 +82,10 @@ namespace IntelligentCake.Player
             Debug.Log(transform.name + " is DEAD!");
 
             StartCoroutine(Respawn());
+            
+            GetComponent<Animator>().enabled = false;
+            SetRigidbodyState(false);
+            SetColliderState(true);
         }
 
         private IEnumerator Respawn()
@@ -84,6 +95,9 @@ namespace IntelligentCake.Player
             Transform spawnPoint = NetworkManager.singleton.GetStartPosition();
             transform.position = spawnPoint.position;
             transform.rotation = spawnPoint.rotation;
+            SetRigidbodyState(true);
+            SetColliderState(false);
+            GetComponent<Animator>().enabled = true;
             Debug.Log(transform.name + " respawned.");
         }
 
@@ -100,6 +114,31 @@ namespace IntelligentCake.Player
             Collider col = GetComponent<Collider>();
             if (col != null)
                 col.enabled = true;
+        }
+
+        private void SetRigidbodyState(bool state)
+        {
+            Rigidbody[] rigidbodies = GetComponentsInChildren<Rigidbody>();
+
+            foreach (Rigidbody rigidbody in rigidbodies)
+            {
+                rigidbody.isKinematic = state;
+                rigidbody.AddForce(Vector3.down * (Time.deltaTime * 10));
+            }
+
+            GetComponent<Rigidbody>().isKinematic = !state;
+        }
+        
+        private void SetColliderState(bool state)
+        {
+            Collider[] colliders = GetComponentsInChildren<Collider>();
+
+            foreach (Collider collider in colliders)
+            {
+                collider.enabled = state;
+            }
+            
+            GetComponent<Collider>().enabled = !state;
         }
     }
 }
