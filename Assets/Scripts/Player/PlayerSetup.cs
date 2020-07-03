@@ -16,6 +16,9 @@ namespace IntelligentCake.Player
         [SerializeField] private string dontDrawLayerName = "DontDraw";
         [SerializeField] private GameObject playerGraphics;
 
+        [SerializeField] private GameObject playerUIPrefab;
+        private GameObject _playerUIInstance;
+
         private void Start()
         {
             if (!isLocalPlayer)
@@ -33,6 +36,10 @@ namespace IntelligentCake.Player
                 
                 // Disable player graphics for local player
                 SetLayerRecursively(playerGraphics, LayerMask.NameToLayer(dontDrawLayerName));
+                
+                // Create PlayerUI
+                _playerUIInstance = Instantiate(playerUIPrefab);
+                _playerUIInstance.name = playerUIPrefab.name;
             }
             
             GetComponent<Player>().Setup();
@@ -73,6 +80,8 @@ namespace IntelligentCake.Player
 
         private void OnDisable()
         {
+            Destroy(_playerUIInstance);
+            
             if (_sceneCamera != null)
             {
                 _sceneCamera.gameObject.SetActive(true);
