@@ -972,7 +972,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   matchSettings:
-    respawnTime: 3
+    respawnTime: 5
 --- !u!4 &585088562
 Transform:
   m_ObjectHideFlags: 0

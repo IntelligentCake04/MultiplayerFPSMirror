@@ -37,6 +37,7 @@ namespace IntelligentCake.Player
 
         private void Start()
         {
+            GetComponent<Animator>().enabled = true;
             SetRigidbodyState(true);
             SetColliderState(false);
         }
