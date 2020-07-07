@@ -124,7 +124,6 @@ namespace IntelligentCake.Player
             foreach (Rigidbody rigidbody in rigidbodies)
             {
                 rigidbody.isKinematic = state;
-                rigidbody.AddForce(Vector3.down * (Time.deltaTime * 10));
             }
 
             GetComponent<Rigidbody>().isKinematic = !state;

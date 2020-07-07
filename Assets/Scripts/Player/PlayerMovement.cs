@@ -53,6 +53,9 @@ namespace IntelligentCake.Player
         
         // Animation
         private Animator _animator;
+        
+        // Speed particles
+        public ParticleSystem speedParticles;
 
         private void Awake()
         {
@@ -66,15 +69,21 @@ namespace IntelligentCake.Player
             Cursor.lockState = CursorLockMode.Locked;
             Cursor.visible = false;
         }
-
-        [Client]
+        
         private void FixedUpdate()
         {
             if (!hasAuthority) return;
             Movement();
+            if (rb.velocity.magnitude  >= 5f)
+            {
+                speedParticles.Play();
+            }
+            else if (rb.velocity.magnitude <= 30f)
+            { 
+                speedParticles.Stop();
+            }
         }
-
-        [Client]
+        
         private void Update()
         {
             if (!hasAuthority) return;
