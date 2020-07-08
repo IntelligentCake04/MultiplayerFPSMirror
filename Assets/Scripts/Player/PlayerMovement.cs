@@ -55,12 +55,13 @@ namespace IntelligentCake.Player
         private Animator _animator;
         
         // Speed particles
-        public ParticleSystem speedParticles;
+        public GameObject speedParticles;
 
         private void Awake()
         {
             rb = GetComponent<Rigidbody>();
             _animator = GetComponent<Animator>();
+            speedParticles.SetActive(false);
         }
 
         private void Start()
@@ -74,13 +75,13 @@ namespace IntelligentCake.Player
         {
             if (!hasAuthority) return;
             Movement();
-            if (rb.velocity.magnitude  >= 5f)
+            if (rb.velocity.magnitude  >= 30f)
             {
-                speedParticles.Play();
+                speedParticles.SetActive(true);
             }
             else if (rb.velocity.magnitude <= 30f)
             { 
-                speedParticles.Stop();
+                speedParticles.SetActive(false);
             }
         }
         

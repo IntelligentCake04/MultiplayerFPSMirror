@@ -781,7 +781,7 @@ MonoBehaviour:
   whatIsGround:
     serializedVersion: 2
     m_Bits: 256
-  speedParticles: {fileID: 4704334313969174391}
+  speedParticles: {fileID: 7052548590322112644}
 --- !u!114 &7120920400476745458
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1038,8 +1038,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7052548590322112644}
   m_LocalRotation: {x: -0, y: 1, z: -0, w: 0}
-  m_LocalPosition: {x: 0, y: 0, z: 4.89}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 2.2}
+  m_LocalScale: {x: 0.30583, y: 0.30583, z: 0.30583}
   m_Children: []
   m_Father: {fileID: 2444269813260876979}
   m_RootOrder: 1
@@ -1758,7 +1758,7 @@ ParticleSystem:
     sphericalDirectionAmount: 0
     randomPositionAmount: 0
     radius:
-      value: 7.5
+      value: 10.56
       mode: 0
       spread: 0
       speed:
@@ -5749,7 +5749,7 @@ ParticleSystemRenderer:
   m_MaxParticleSize: 0.5
   m_CameraVelocityScale: 0
   m_VelocityScale: 0.05
-  m_LengthScale: 50.2
+  m_LengthScale: 20
   m_SortingFudge: 0
   m_NormalDirection: 1
   m_ShadowBias: 0
