@@ -26,6 +26,7 @@
       <Path>.idea</Path>
       <Path>.vs</Path>
       <Path>Build</Path>
+      <Path>GameLauncher</Path>
       <Path>Library</Path>
       <Path>Logs</Path>
       <Path>Temp</Path>
