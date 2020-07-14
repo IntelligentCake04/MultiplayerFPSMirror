@@ -247,6 +247,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4092126712594102404}
   - component: {fileID: 8268219320212437183}
+  - component: {fileID: 8020122703342424101}
   m_Layer: 9
   m_Name: USP-45
   m_TagString: Untagged
@@ -300,6 +301,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   posOffset: 0.1
   speed: 0.2
+--- !u!65 &8020122703342424101
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1049759038131669655}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 6.37, y: 4.39, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &1259705895719958174
 GameObject:
   m_ObjectHideFlags: 0

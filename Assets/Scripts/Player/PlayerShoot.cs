@@ -9,10 +9,11 @@ namespace IntelligentCake.Player
     {
         private const string PlayerTag = "Player";
         
-        public Gun gun;
+        [SerializeField] private Gun gun;
+        [SerializeField] private GameObject weaponGFX;
+        [SerializeField] private string weaponLayerName = "Weapon";
         
-        [SerializeField]
-        public Camera fpsCam;
+        [SerializeField] public Camera fpsCam;
 
         [SerializeField] private LayerMask mask;
         
@@ -24,6 +25,8 @@ namespace IntelligentCake.Player
                 this.enabled = false;
             }
 
+            weaponGFX.layer = LayerMask.NameToLayer(weaponLayerName);
+            
             gun.currentAmmo = gun.maxAmmo;
         }
 
