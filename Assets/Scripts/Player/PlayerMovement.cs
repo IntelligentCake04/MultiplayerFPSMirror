@@ -103,6 +103,7 @@ namespace IntelligentCake.Player
             crouching = Input.GetKey(KeyCode.LeftControl);
             
             _animator.SetFloat("ForwardVelocity", y);
+            _animator.SetFloat("RightVelocity", x);
             //Crouching
             if (Input.GetKeyDown(KeyCode.LeftControl))
                 StartCrouch();
