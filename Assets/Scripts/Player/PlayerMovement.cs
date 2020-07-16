@@ -27,6 +27,7 @@ namespace IntelligentCake.Player
         //Sliding
         private Vector3 normalVector = Vector3.up;
         public Transform orientation;
+        public bool isSliding = false;
 
         //Assingables
         public Transform playerCam;
@@ -104,6 +105,8 @@ namespace IntelligentCake.Player
             
             _animator.SetFloat("ForwardVelocity", y);
             _animator.SetFloat("RightVelocity", x);
+            _animator.SetBool("isGrounded", grounded);
+            _animator.SetBool("isSliding", isSliding);
             //Crouching
             if (Input.GetKeyDown(KeyCode.LeftControl))
                 StartCrouch();
@@ -113,15 +116,25 @@ namespace IntelligentCake.Player
 
         private void StartCrouch()
         {
+            GetComponent<CapsuleCollider>().height = GetComponent<CapsuleCollider>().height / 2;
+            GetComponent<CapsuleCollider>().center = GetComponent<CapsuleCollider>().center / 2;
+            GetComponent<CapsuleCollider>().radius = GetComponent<CapsuleCollider>().radius * 2;
             transform.localScale = crouchScale;
             transform.position = new Vector3(transform.position.x, transform.position.y - 0.5f, transform.position.z);
             if (rb.velocity.magnitude > 0.5f)
                 if (grounded)
+                {
+                    isSliding = true;
                     rb.AddForce(orientation.transform.forward * slideForce);
+                }
         }
 
         private void StopCrouch()
         {
+            isSliding = false;
+            GetComponent<CapsuleCollider>().height = GetComponent<CapsuleCollider>().height * 2;
+            GetComponent<CapsuleCollider>().center = GetComponent<CapsuleCollider>().center * 2;
+            GetComponent<CapsuleCollider>().radius = GetComponent<CapsuleCollider>().radius / 2;
             transform.localScale = playerScale;
             transform.position = new Vector3(transform.position.x, transform.position.y + 0.5f, transform.position.z);
         }
@@ -184,6 +197,7 @@ namespace IntelligentCake.Player
                 //Add jump forces
                 rb.AddForce(Vector2.up * (jumpForce * 1.5f));
                 rb.AddForce(normalVector * (jumpForce * 0.5f));
+                GetComponent<CapsuleCollider>().height = GetComponent<CapsuleCollider>().height / 2;
 
                 //If jumping while falling, reset y velocity.
                 var vel = rb.velocity;
@@ -203,6 +217,7 @@ namespace IntelligentCake.Player
 
         private void ResetJump()
         {
+            GetComponent<CapsuleCollider>().height = GetComponent<CapsuleCollider>().height * 2;
             readyToJump = true;
         }
 
