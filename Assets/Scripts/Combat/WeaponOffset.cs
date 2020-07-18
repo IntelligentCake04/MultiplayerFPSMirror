@@ -8,20 +8,20 @@ namespace IntelligentCake.Combat
     {
                 
         public float posOffset = 0.1f;
-        private PlayerMovement playerMovement;
-        private Vector3 currentVelocity;
+        private PlayerMovement _playerMovement;
+        private Vector3 _currentVelocity;
         public float speed = 0.2f;
 
         private void Start()
         {
-            playerMovement = GetComponentInParent<PlayerMovement>();
+            _playerMovement = GetComponentInParent<PlayerMovement>();
         }
         
         private void Update()
         {
-            Vector3 offset = playerMovement.FindVelRelativeToLook() * posOffset;
+            Vector3 offset = _playerMovement.FindVelRelativeToLook() * posOffset;
             Vector3 desiredPos = Vector3.zero - new Vector3(offset.x, transform.localPosition.y, offset.y);
-            transform.localPosition = Vector3.SmoothDamp(desiredPos, Vector3.zero, ref currentVelocity, speed * Time.deltaTime);
+            transform.localPosition = Vector3.SmoothDamp(desiredPos, Vector3.zero, ref _currentVelocity, speed * Time.deltaTime);
         }
     }
 }

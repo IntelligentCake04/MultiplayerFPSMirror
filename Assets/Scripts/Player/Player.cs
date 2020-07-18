@@ -24,6 +24,8 @@ namespace IntelligentCake.Player
         [SerializeField]
         private Behaviour[] disableOnDeath;
         private bool[] _wasEnabled;
+
+        public FastIKFabric[] bones;
         public void Setup()
         {
             _wasEnabled = new bool[disableOnDeath.Length];
@@ -37,6 +39,11 @@ namespace IntelligentCake.Player
 
         private void Start()
         {
+            bones = GetComponentsInChildren<FastIKFabric>();
+            foreach (FastIKFabric fastIk in bones)
+            {
+                fastIk.enabled = true;
+            }
             GetComponent<Animator>().enabled = true;
             SetRigidbodyState(true);
             SetColliderState(false);
@@ -84,6 +91,10 @@ namespace IntelligentCake.Player
 
             StartCoroutine(Respawn());
             
+            foreach (FastIKFabric fastIk in bones)
+            {
+                fastIk.enabled = false;
+            }
             GetComponent<Animator>().enabled = false;
             SetRigidbodyState(false);
             SetColliderState(true);
@@ -98,7 +109,11 @@ namespace IntelligentCake.Player
             transform.rotation = spawnPoint.rotation;
             SetRigidbodyState(true);
             SetColliderState(false);
-            GetComponent<Animator>().enabled = true;
+            GetComponent<Animator>().enabled = true;    
+            foreach (FastIKFabric fastIk in bones)
+            {
+                fastIk.enabled = true;
+            }
             Debug.Log(transform.name + " respawned.");
         }
 
