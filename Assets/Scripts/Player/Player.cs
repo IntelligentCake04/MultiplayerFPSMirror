@@ -53,8 +53,11 @@ namespace IntelligentCake.Player
         {
             if (!isLocalPlayer)
                     return;
-            
+
             if (Input.GetKeyDown(KeyCode.K))
+                RpcTakeDamage(9999);
+            
+            if (transform.position.y < -5)
                 RpcTakeDamage(9999);
         }
 

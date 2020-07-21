@@ -9,12 +9,11 @@ namespace IntelligentCake.Combat
     {
         private const string PlayerTag = "Player";
         
-        private PlayerWeapon _currentWeapon;
-
         [SerializeField] public Camera fpsCam;
 
         [SerializeField] private LayerMask mask;
 
+        private PlayerWeapon _currentWeapon;
         private WeaponManager _weaponManager;
         
         private void Start()
@@ -52,8 +51,9 @@ namespace IntelligentCake.Combat
             {
                 AutomaticShoot();
             }
+            
         }
-
+        
         private void SemiAutomaticShoot()
         {
             if (Input.GetButtonDown("Fire1") && Time.time >= _currentWeapon.nextTimeToFire)
@@ -82,9 +82,57 @@ namespace IntelligentCake.Combat
             _currentWeapon.isReloading = false;
         }
 
+        // Is called on server when player shoots
+        [Command]
+        void CmdOnShoot()
+        {
+            RpcDoShootEffect();
+        }
+
+        // Is called on clients when we need to 
+        // do a shoot effect
+        [ClientRpc]
+        void RpcDoShootEffect()
+        {
+            _weaponManager.GetCurrentGraphics().muzzleFlash.Play();
+        }
+
+        // Is called on the server when we hit something
+        // Takes in the pos and normal of the surface
+        [Command]
+        void CmdOnHit(Vector3 pos, Vector3 normal)
+        {
+            RpcDoHitEffect(pos, normal);
+        }
+        
+        // Is called on all clients
+        // Here we can spawn in cool effects
+        [ClientRpc]
+        void RpcDoHitEffect(Vector3 pos, Vector3 normal)
+        {
+            LineRenderer trail = _weaponManager.GetCurrentGraphics().bulletTrail;
+            trail.enabled = true;
+            trail.SetPosition(0, _weaponManager.GetCurrentGraphics().muzzleFlash.transform.position);
+            trail.SetPosition(1, pos);
+            GameObject hitEffect = (GameObject)Instantiate(_weaponManager.GetCurrentGraphics().hitEffectPrefab, pos, Quaternion.LookRotation(normal));
+            StartCoroutine(DestroyLine(trail));
+            Destroy(hitEffect, 2f);
+        }
+
+        IEnumerator DestroyLine(LineRenderer trail)
+        {
+            yield return 0;
+            trail.enabled = false;
+        }
+        
         [Client]
         private void Shoot()
         {
+            if (!isLocalPlayer) { return; }
+            
+            // We are shooting, call the OnShoot on server
+            CmdOnShoot();
+            
             _currentWeapon.currentAmmo--;
             RaycastHit hit;
             if (Physics.Raycast(fpsCam.transform.position, fpsCam.transform.forward, out hit, _currentWeapon.range, mask))
@@ -93,6 +141,8 @@ namespace IntelligentCake.Combat
                 {
                     CmdPlayerShot(hit.collider.name, _currentWeapon.damage);
                 }
+                // We hit something, call the CmdOnHit method on the server
+                CmdOnHit(hit.point, hit.normal);
             }
         }    
 
@@ -100,7 +150,6 @@ namespace IntelligentCake.Combat
         void CmdPlayerShot(string playerId, int damage)
         {
             Debug.Log(playerId + " has been shot.");
-
             Player.Player player = GameManager.GetPlayer(playerId);
             player.RpcTakeDamage(damage);
         }

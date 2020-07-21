@@ -14,6 +14,7 @@ namespace IntelligentCake.Combat
         [SerializeField] private PlayerWeapon primaryWeapon;
 
         private PlayerWeapon _currentWeapon;
+        private WeaponGraphics _currentGraphics;
         private void Start()
         {
             EquipWeapon(primaryWeapon);
@@ -24,15 +25,28 @@ namespace IntelligentCake.Combat
             return _currentWeapon;
         }
 
+        public WeaponGraphics GetCurrentGraphics()
+        {
+            return _currentGraphics;
+        }
+
         private void EquipWeapon(PlayerWeapon weapon)
         {
             _currentWeapon = weapon;
 
             GameObject weaponIns = (GameObject)Instantiate(weapon.graphics, weaponHolder.position, weaponHolder.rotation);
             weaponIns.transform.SetParent(weaponHolder);
+
+            _currentGraphics = weaponIns.GetComponent<WeaponGraphics>();
+            if (_currentGraphics == null)
+            {
+                Debug.LogError("No WeaponGraphics component on the weapon object: " + weaponIns.name);
+            }
+            
             if (isLocalPlayer)
             {
-                weaponIns.layer = LayerMask.NameToLayer(weaponLayerName);
+                Util.SetLayerRecursively(weaponIns, LayerMask.NameToLayer(weaponLayerName));
+                
             }
         }
     }

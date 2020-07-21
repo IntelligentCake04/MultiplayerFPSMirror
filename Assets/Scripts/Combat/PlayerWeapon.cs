@@ -8,7 +8,7 @@ namespace IntelligentCake.Combat
         public string name = "USP-45";
         public int damage = 10;
         public float fireRate = 15f;
-        
+
         public GameObject graphics;
 
         public int maxAmmo = 10;
