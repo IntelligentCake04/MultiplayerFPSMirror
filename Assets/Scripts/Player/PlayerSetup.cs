@@ -5,6 +5,7 @@ using UnityEngine;
 namespace IntelligentCake.Player
 {
     [RequireComponent(typeof(Player))]
+    [RequireComponent(typeof(PlayerMovement))]
     public class PlayerSetup : NetworkBehaviour
     {
         [SerializeField] private Behaviour[] componentsToDisable;
@@ -40,9 +41,16 @@ namespace IntelligentCake.Player
                 // Create PlayerUI
                 _playerUIInstance = Instantiate(playerUIPrefab);
                 _playerUIInstance.name = playerUIPrefab.name;
+                
+                // Configure PlayerUI
+                PlayerUI ui = _playerUIInstance.GetComponent<PlayerUI>();
+                if (ui == null)
+                    Debug.LogError("No PlayerUI component on PlayerUI prefab.");
+
+                GetComponent<Player>().SetupPlayer();
             }
             
-            GetComponent<Player>().Setup();
+
         }
 
         private void SetLayerRecursively(GameObject obj, int newLayer)
@@ -81,10 +89,13 @@ namespace IntelligentCake.Player
         private void OnDisable()
         {
             Destroy(_playerUIInstance);
-            
-            if (_sceneCamera != null)
+
+            if (isLocalPlayer)
             {
-                _sceneCamera.gameObject.SetActive(true);
+                if (_sceneCamera != null)
+                {
+                    _sceneCamera.gameObject.SetActive(true);
+                }
             }
             GameManager.UnRegisterPlayer(transform.name);
         }

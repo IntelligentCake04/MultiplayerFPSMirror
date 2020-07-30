@@ -25,18 +25,39 @@ namespace IntelligentCake.Player
         private Behaviour[] disableOnDeath;
         private bool[] _wasEnabled;
 
+        [SerializeField] private GameObject spawnEffect;
+
+        private bool firstSetup = true;
+
         public FastIKFabric[] bones;
-        public void Setup()
+        public void SetupPlayer()
         {
-            _wasEnabled = new bool[disableOnDeath.Length];
-            for (int i = 0; i < _wasEnabled.Length; i++)
-            {
-                _wasEnabled[i] = disableOnDeath[i].enabled;
-            }
-            
-            SetDefaults();
+            CmdBroadcastNewPlayerSetup();
         }
 
+        [Command]
+        private void CmdBroadcastNewPlayerSetup()
+        {
+            RpcSetupPlayerOnAllClients();
+        }
+
+        [ClientRpc]
+        private void RpcSetupPlayerOnAllClients()
+        {
+            if (firstSetup)
+            {
+                _wasEnabled = new bool[disableOnDeath.Length];
+                for (int i = 0; i < _wasEnabled.Length; i++)
+                {
+                    _wasEnabled[i] = disableOnDeath[i].enabled;
+                }
+
+                firstSetup = false;
+            }
+
+            SetDefaults();
+        }
+        
         private void Start()
         {
             bones = GetComponentsInChildren<FastIKFabric>();
@@ -106,17 +127,21 @@ namespace IntelligentCake.Player
         private IEnumerator Respawn()
         {
             yield return new WaitForSeconds(GameManager.Instance.matchSettings.respawnTime);
-            SetDefaults();
             Transform spawnPoint = NetworkManager.singleton.GetStartPosition();
             transform.position = spawnPoint.position;
             transform.rotation = spawnPoint.rotation;
             SetRigidbodyState(true);
             SetColliderState(false);
-            GetComponent<Animator>().enabled = true;    
+            GetComponent<Animator>().enabled = true;
             foreach (FastIKFabric fastIk in bones)
             {
                 fastIk.enabled = true;
             }
+
+            yield return new WaitForSeconds(0.1f);
+
+            SetupPlayer();
+            
             Debug.Log(transform.name + " respawned.");
         }
 
@@ -133,6 +158,10 @@ namespace IntelligentCake.Player
             Collider col = GetComponent<Collider>();
             if (col != null)
                 col.enabled = true;
+            
+            // Create spawn effect
+            GameObject _gfxIns = (GameObject) Instantiate(spawnEffect, transform.position, Quaternion.identity);
+            Destroy(_gfxIns, 3f);
         }
 
         private void SetRigidbodyState(bool state)

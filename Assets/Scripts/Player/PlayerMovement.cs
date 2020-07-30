@@ -88,6 +88,9 @@ namespace IntelligentCake.Player
         
         private void Update()
         {
+            if (PauseMenu.IsOn)
+                return;
+            
             if (!hasAuthority) return;
             MyInput();
             Look();

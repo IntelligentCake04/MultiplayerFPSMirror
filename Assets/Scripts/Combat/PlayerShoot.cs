@@ -33,6 +33,9 @@ namespace IntelligentCake.Combat
             _currentWeapon = _weaponManager.GetCurrentWeapon();
             if (!hasAuthority) return;
             
+            if (PauseMenu.IsOn)
+                return;
+            
             if(_currentWeapon.isReloading)
                 return;
             
@@ -132,7 +135,7 @@ namespace IntelligentCake.Combat
             
             // We are shooting, call the OnShoot on server
             CmdOnShoot();
-            
+
             _currentWeapon.currentAmmo--;
             RaycastHit hit;
             if (Physics.Raycast(fpsCam.transform.position, fpsCam.transform.forward, out hit, _currentWeapon.range, mask))
