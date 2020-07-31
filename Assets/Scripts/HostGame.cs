@@ -11,9 +11,16 @@ public class HostGame : MonoBehaviour
     
     public InputField ipAddress;
 
+    public Button connect;
+
     private void Awake()
     {
-        _manager = GetComponent<NetworkManager>();
+        _manager = FindObjectOfType<NetworkManager>();
+    }
+
+    private void Update()
+    {
+        Cursor.visible = true;
     }
 
     public void Host()
@@ -23,13 +30,10 @@ public class HostGame : MonoBehaviour
 
     public void ConnectToServer()
     {
-        if (_manager.networkAddress == null)
-        {
-            ConnectToServer();
-        }
-
         _manager.networkAddress = ipAddress.text;
-        
-        _manager.StartClient();
+        if (_manager.networkAddress != null)
+        {
+            _manager.StartClient();
+        }
     }
 }

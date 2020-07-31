@@ -25,6 +25,10 @@ namespace IntelligentCake.Player
             PauseMenu.IsOn = pauseMenu.activeSelf;
             if (PauseMenu.IsOn)
                 Cursor.lockState = CursorLockMode.None;
+            else
+            {
+                Cursor.lockState = CursorLockMode.Locked;
+            }
         }
     }
 }
