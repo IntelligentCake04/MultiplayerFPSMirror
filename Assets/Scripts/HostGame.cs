@@ -11,8 +11,6 @@ public class HostGame : MonoBehaviour
     
     public InputField ipAddress;
 
-    public Button connect;
-
     private void Awake()
     {
         _manager = FindObjectOfType<NetworkManager>();
