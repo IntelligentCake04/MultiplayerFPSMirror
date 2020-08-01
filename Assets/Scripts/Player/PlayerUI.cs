@@ -6,6 +6,7 @@ namespace IntelligentCake.Player
     public class PlayerUI : MonoBehaviour
     {
         [SerializeField] private GameObject pauseMenu;
+        
         private void Update()
         {
             if (Input.GetKeyDown(KeyCode.Escape))

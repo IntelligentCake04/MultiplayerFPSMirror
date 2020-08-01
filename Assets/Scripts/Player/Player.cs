@@ -31,7 +31,6 @@ namespace IntelligentCake.Player
 
         public FastIKFabric[] bones;
 
-        private string username;
         public void SetupPlayer()
         {
             CmdBroadcastNewPlayerSetup();
