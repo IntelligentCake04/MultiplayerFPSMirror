@@ -25,7 +25,6 @@ namespace IntelligentCake.Combat
             }
 
             _weaponManager = GetComponent<WeaponManager>();
-            _currentWeapon.currentAmmo = _currentWeapon.maxAmmo;
         }
 
         private void Update()
@@ -35,14 +34,14 @@ namespace IntelligentCake.Combat
             
             if (PauseMenu.IsOn)
                 return;
-            
-            if(_currentWeapon.isReloading)
-                return;
-            
-            if (_currentWeapon.currentAmmo <= 0)
+
+            if (_currentWeapon.bullets < _currentWeapon.maxBullets)
             {
-                StartCoroutine(Reload());
-                return;
+                if (Input.GetButtonDown("Reload"))
+                {
+                    _weaponManager.Reload();
+                    return;
+                }
             }
             
             if (_currentWeapon.isAutomatic == false)
@@ -74,17 +73,6 @@ namespace IntelligentCake.Combat
             }
         }
 
-        private IEnumerator Reload()
-        {
-            _currentWeapon.isReloading = true;
-            Debug.Log("Reloading");
-            
-            yield return new WaitForSeconds(_currentWeapon.reloadTime);
-            
-            _currentWeapon.currentAmmo = _currentWeapon.maxAmmo;
-            _currentWeapon.isReloading = false;
-        }
-
         // Is called on server when player shoots
         [Command]
         void CmdOnShoot()
@@ -97,6 +85,14 @@ namespace IntelligentCake.Combat
         [ClientRpc]
         void RpcDoShootEffect()
         {
+            Animator anim = _weaponManager.GetCurrentGraphics().GetComponent<Animator>();
+            anim.ResetTrigger("shoot");
+            if (anim != null)
+            {
+                anim.enabled = false;
+                anim.enabled = true;
+                anim.SetTrigger("shoot");
+            }
             _weaponManager.GetCurrentGraphics().muzzleFlash.Play();
         }
 
@@ -131,12 +127,21 @@ namespace IntelligentCake.Combat
         [Client]
         private void Shoot()
         {
-            if (!isLocalPlayer) { return; }
+            if (!isLocalPlayer || _weaponManager.isReloading) { return; }
+
+            if (_currentWeapon.bullets <= 0)
+            {
+                _weaponManager.Reload();
+                return;
+            }
+
+            _currentWeapon.bullets--;
+            
+            Debug.Log("Remaining ammo: " + _currentWeapon.bullets);
             
             // We are shooting, call the OnShoot on server
             CmdOnShoot();
-
-            _currentWeapon.currentAmmo--;
+            
             RaycastHit hit;
             if (Physics.Raycast(fpsCam.transform.position, fpsCam.transform.forward, out hit, _currentWeapon.range, mask))
             {

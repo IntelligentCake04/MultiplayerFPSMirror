@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using UnityEngine;
 using Mirror;
 using UnityEngine.Serialization;
@@ -15,6 +16,9 @@ namespace IntelligentCake.Combat
 
         private PlayerWeapon _currentWeapon;
         private WeaponGraphics _currentGraphics;
+
+        public bool isReloading;
+        
         private void Start()
         {
             EquipWeapon(primaryWeapon);
@@ -47,6 +51,44 @@ namespace IntelligentCake.Combat
             {
                 Util.SetLayerRecursively(weaponIns, LayerMask.NameToLayer(weaponLayerName));
                 
+            }
+        }
+
+        public void Reload()
+        {
+            if (isReloading)
+                return;
+        
+            StartCoroutine(Reload_Coroutine());
+        }
+
+        private IEnumerator Reload_Coroutine()
+        {
+            Debug.Log("Reloading...");
+            isReloading = true;
+            
+            CmdOnReload();
+
+            yield return new WaitForSeconds(_currentWeapon.reloadTime);
+            
+            _currentWeapon.bullets = _currentWeapon.maxBullets;
+            
+            isReloading = false;
+        }
+
+        [Command]
+        private void CmdOnReload()
+        {
+            RpcOnReload();
+        }
+
+        [ClientRpc]
+        private void RpcOnReload()
+        {
+            Animator anim = _currentGraphics.GetComponent<Animator>();
+            if (anim != null)
+            {
+                anim.SetTrigger("reload");
             }
         }
     }

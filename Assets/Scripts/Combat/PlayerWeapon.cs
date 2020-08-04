@@ -11,13 +11,18 @@ namespace IntelligentCake.Combat
 
         public GameObject graphics;
 
-        public int maxAmmo = 10;
-        public int currentAmmo;
-        public float reloadTime = 1f;
-        public bool isReloading = false;
+        public int maxBullets = 10;
+        public int bullets;
 
+        public float reloadTime = 1f;
+        
         public bool isAutomatic;
         public float range = 100f;
         public float nextTimeToFire;
+        
+        public PlayerWeapon()
+        {
+            bullets = maxBullets;
+        }
     }
 }
