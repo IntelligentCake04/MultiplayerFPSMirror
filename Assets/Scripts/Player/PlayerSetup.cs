@@ -46,7 +46,9 @@ namespace IntelligentCake.Player
                 PlayerUI ui = _playerUIInstance.GetComponent<PlayerUI>();
                 if (ui == null)
                     Debug.LogError("No PlayerUI component on PlayerUI prefab.");
-
+                
+                ui.SetPlayer(GetComponent<Player>());
+                
                 GetComponent<Player>().SetupPlayer();
             }
             

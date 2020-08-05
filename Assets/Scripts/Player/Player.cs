@@ -19,7 +19,17 @@ namespace IntelligentCake.Player
         private int maxHealth = 100;
         
         [SyncVar]
-        public float currentHealth;
+        private int _currentHealth;
+
+        public float GetHealthPct()
+        {
+            return (float)_currentHealth / maxHealth;
+        }
+
+        public int GetHealth()
+        {
+            return _currentHealth;
+        }
 
         [SerializeField]
         private Behaviour[] disableOnDeath;
@@ -27,7 +37,7 @@ namespace IntelligentCake.Player
 
         [SerializeField] private GameObject spawnEffect;
 
-        private bool firstSetup = true;
+        private bool _firstSetup = true;
 
         public FastIKFabric[] bones;
 
@@ -45,7 +55,7 @@ namespace IntelligentCake.Player
         [ClientRpc]
         private void RpcSetupPlayerOnAllClients()
         {
-            if (firstSetup)
+            if (_firstSetup)
             {
                 _wasEnabled = new bool[disableOnDeath.Length];
                 for (int i = 0; i < _wasEnabled.Length; i++)
@@ -53,7 +63,7 @@ namespace IntelligentCake.Player
                     _wasEnabled[i] = disableOnDeath[i].enabled;
                 }
 
-                firstSetup = false;
+                _firstSetup = false;
             }
 
             SetDefaults();
@@ -89,11 +99,11 @@ namespace IntelligentCake.Player
             if(isDead)
                 return;
             
-            currentHealth -= amount;
+            _currentHealth -= amount;
             
-            Debug.Log(transform.name + " now has " + currentHealth + " health.");
+            Debug.Log(transform.name + " now has " + _currentHealth + " health.");
 
-            if (currentHealth <= 0)
+            if (_currentHealth <= 0)
             {
                 Die();
             }
@@ -150,7 +160,7 @@ namespace IntelligentCake.Player
         {
             isDead = false;
             
-            currentHealth = maxHealth;
+            _currentHealth = maxHealth;
             for (int i = 0; i < disableOnDeath.Length; i++)
             {
                 disableOnDeath[i].enabled = _wasEnabled[i];
