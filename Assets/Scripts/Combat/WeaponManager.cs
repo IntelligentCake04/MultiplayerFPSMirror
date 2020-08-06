@@ -1,116 +1,123 @@
 ﻿using System.Collections;
+using System.Collections.Generic;
 using Mirror;
 using UnityEngine;
 
 namespace IntelligentCake.Combat
 {
     public class WeaponManager : NetworkBehaviour
-
     {
-        [SerializeField] private string weaponLayerName = "Weapon";
-        [SerializeField] private Transform weaponHolder;
-        private PlayerWeapon _currentWeapon;
-        [SerializeField] private PlayerWeapon[] weapons;
-        private GameObject[] _instanceWeapons;
-        private WeaponGraphics _currentGraphics;
+        [SerializeField]
+        private string weaponLayerName = "Weapon";
 
-        public bool isReloading;
+        [SerializeField] private Transform weaponHolder;
+
+        [SerializeField] private PlayerWeapon[] weapons;
+        
+        private WeaponGraphics _currentGraphics;
+        private PlayerWeapon _currentWeapon;
+        private int _currentWeaponSlot = -1;
+        private GameObject _weaponIns;
+        private readonly List<PlayerWeapon> inventory = new List<PlayerWeapon>();
+
+        private AudioSource _audioSource;
+
+        public bool isReloading = false;
 
         private void Start()
-
         {
-            _instanceWeapons = new GameObject[weapons.Length];
-
-            CmdSetupWeapons();
-
-            //On Spawn, equip primary weapon
-
-            CmdEquipWeapon(0);
-        }
-
-        [Command]
-        public void CmdSetupWeapons()
-        {
-            RpcSetupWeapons();
-        }
-
-        [ClientRpc]
-        public void RpcSetupWeapons()
-        {
-            for (int i = 0; i < _instanceWeapons.Length; i++)
-
+            _audioSource = GetComponent<AudioSource>();
+            //When we spawn the character, give the player weapons.
+            foreach (var weapon in weapons)
             {
-                _instanceWeapons[i] = Instantiate(weapons[i].graphics, weaponHolder.position, weaponHolder.rotation);
-
-                _instanceWeapons[i].transform.SetParent(weaponHolder);
+                AddWeaponToPlayersInventory(weapon);
             }
         }
 
+        //Returns the current weapon.
         public PlayerWeapon GetCurrentWeapon()
-
         {
             return _currentWeapon;
         }
 
+        //Returns the current weapon graphics.
         public WeaponGraphics GetCurrentGraphics()
-
         {
             return _currentGraphics;
         }
 
-        private void Update()
+        public AudioSource GetAudioSource()
         {
-            if (isReloading) return;
+            return _audioSource;
+        }
+
+        //Add weapon to backend inventory.
+        private void AddWeaponToPlayersInventory(PlayerWeapon weapon)
+        {
+            foreach (var gun in inventory)
+            {
+                //Does the gun already exist in inventory?
+                if (gun.name == weapon.name)
+                {
+                    // Add Some Ammo
+                    return;
+                }
+            }
+            inventory.Add(weapon);
+            InstantiateNewWeapon(weapon);
+        }
+
+        //Instantiate a new weapon in the players hands when its picked up
+        private void InstantiateNewWeapon(PlayerWeapon weapon)
+        {
+            //Remove the current weapon gfx
+            if (_weaponIns != null) weaponHolder.transform.GetChild(_currentWeaponSlot).gameObject.SetActive(false);
             
-            if (Input.GetKey(KeyCode.Alpha1))
+            //Assign the current weapon
+            _currentWeapon = weapon;
+            
+            //Instantiate the weapon graphics associated with the current weapon class
+            _weaponIns = Instantiate(weapon.graphics, weaponHolder.position, weaponHolder.rotation);
+            _weaponIns.transform.SetParent(weaponHolder);
+
+            //Ensure that there is some graphics assigned!
+            _currentGraphics = _weaponIns.GetComponent<WeaponGraphics>();
+            if (_currentGraphics == null) Debug.Log("No Weapon Graphics Component On the Object : " + _weaponIns.name);
+            _currentWeaponSlot += 1;
+            
+            //Set the layer mask if this is the local player, so the weapon camera can render it.
+            if (isLocalPlayer)
             {
-                ChangeWeapon(0);
-            }
-            else if (Input.GetKey(KeyCode.Alpha2))
-            {
-                ChangeWeapon(1);
+                Util.SetLayerRecursively(_weaponIns, LayerMask.NameToLayer(weaponLayerName));
             }
         }
-        public void ChangeWeapon(int newWeapon)
 
-        {
-            CmdEquipWeapon(newWeapon);
-        }
-
+        //Request a weapon switch
         [Command]
-        void CmdEquipWeapon(int index)
+        public void CmdRequestWeaponSwitch(int requestedSlot)
         {
-            RpcEquipWeapon(index);
+            RpcSwitchWeapon(requestedSlot);
         }
 
+        //Switch Weapons on all clients
         [ClientRpc]
-        void RpcEquipWeapon(int index)
-
+        private void RpcSwitchWeapon(int requestedSlot)
         {
-            _currentWeapon = weapons[index];
+            if (inventory.Count - 1 < requestedSlot)
+            {
+                Debug.Log("No Weapon Found In Slot!");
+                return;
+            }
+
+            weaponHolder.transform.GetChild(_currentWeaponSlot).gameObject.SetActive(false);
+            weaponHolder.transform.GetChild(requestedSlot).gameObject.SetActive(true);
+            _currentWeaponSlot = requestedSlot;
+
+            // Set current weapon and current graphics
+            _currentWeapon = inventory[requestedSlot]; 
+            _currentGraphics = weaponHolder.transform.GetChild(requestedSlot).gameObject.GetComponent<WeaponGraphics>();
             
-            //Enable newWeapon, disable all others
-            for (int i = 0; i < weapons.Length; i++)
-
-            {
-                if (i == index)
-                {
-                    _instanceWeapons[i].gameObject.SetActive(true);
-                }
-                else
-                {
-                    _instanceWeapons[i].gameObject.SetActive(false);
-                }
-            }
-
-            Debug.Log(_currentWeapon.name + " has been activated. ");
-            _currentGraphics = _instanceWeapons[index].GetComponent<WeaponGraphics>();
-            if (_currentGraphics == null)
-
-            {
-                Debug.LogError("No WeaponGFX component on the weapon: " + _instanceWeapons[index].name);
-            }
-
+            _audioSource.PlayOneShot(_currentWeapon.reload);
         }
 
         public void Reload()
@@ -149,6 +156,8 @@ namespace IntelligentCake.Combat
             {
                 anim.SetTrigger("reload");
             }
+            
+            _audioSource.PlayOneShot(_currentWeapon.reload);
         }
     }
 }

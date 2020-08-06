@@ -1,37 +1,38 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
+﻿using Mirror;
 using UnityEngine;
-using Mirror;
 using UnityEngine.UI;
 
-public class HostGame : MonoBehaviour
+namespace IntelligentCake
 {
-    private NetworkManager _manager;
+    public class HostGame : MonoBehaviour
+    {
+        private NetworkManager _manager;
     
-    public InputField ipAddress;
+        public InputField ipAddress;
 
-    private void Awake()
-    {
-        _manager = FindObjectOfType<NetworkManager>();
-    }
-
-    private void Update()
-    {
-        Cursor.visible = true;
-    }
-
-    public void Host()
-    {
-        _manager.StartHost();
-    }
-
-    public void ConnectToServer()
-    {
-        _manager.networkAddress = ipAddress.text;
-        if (_manager.networkAddress != null)
+        private void Awake()
         {
-            _manager.StartClient();
+            _manager = FindObjectOfType<NetworkManager>();
+        }
+
+        private void Update()
+        {
+            Cursor.visible = true;
+            Cursor.lockState = CursorLockMode.None;
+        }
+
+        public void Host()
+        {
+            _manager.StartHost();
+        }
+
+        public void ConnectToServer()
+        {
+            _manager.networkAddress = ipAddress.text;
+            if (_manager.networkAddress != null)
+            {
+                _manager.StartClient();
+            }
         }
     }
 }

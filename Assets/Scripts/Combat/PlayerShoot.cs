@@ -53,7 +53,19 @@ namespace IntelligentCake.Combat
             {
                 AutomaticShoot();
             }
+
+            if (_weaponManager.isReloading == false )
+            {
+                if (Input.GetKey(KeyCode.Alpha1))
+                {
+                    _weaponManager.CmdRequestWeaponSwitch(0);
+                }
             
+                if (Input.GetKey(KeyCode.Alpha2))
+                {
+                    _weaponManager.CmdRequestWeaponSwitch(1);
+                }
+            }
         }
         
         private void SemiAutomaticShoot()
@@ -94,6 +106,7 @@ namespace IntelligentCake.Combat
                 anim.SetTrigger("shoot");
             }
             _weaponManager.GetCurrentGraphics().muzzleFlash.Play();
+            _weaponManager.GetAudioSource().PlayOneShot(_currentWeapon.shoot);
         }
 
         // Is called on the server when we hit something

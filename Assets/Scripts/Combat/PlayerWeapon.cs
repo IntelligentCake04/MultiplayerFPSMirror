@@ -20,6 +20,10 @@ namespace IntelligentCake.Combat
         public float range = 100f;
         public float nextTimeToFire;
         
+        public AudioClip shoot;
+
+        public AudioClip reload;
+
         public PlayerWeapon()
         {
             bullets = maxBullets;
