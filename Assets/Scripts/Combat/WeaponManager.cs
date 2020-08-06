@@ -117,7 +117,7 @@ namespace IntelligentCake.Combat
             _currentWeapon = inventory[requestedSlot]; 
             _currentGraphics = weaponHolder.transform.GetChild(requestedSlot).gameObject.GetComponent<WeaponGraphics>();
             
-            _audioSource.PlayOneShot(_currentWeapon.reload);
+            CmdOnReload();
         }
 
         public void Reload()
@@ -156,7 +156,6 @@ namespace IntelligentCake.Combat
             {
                 anim.SetTrigger("reload");
             }
-            
             _audioSource.PlayOneShot(_currentWeapon.reload);
         }
     }
