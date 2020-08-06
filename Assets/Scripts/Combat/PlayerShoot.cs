@@ -34,7 +34,7 @@ namespace IntelligentCake.Combat
             
             if (PauseMenu.IsOn)
                 return;
-
+            
             if (_currentWeapon.bullets < _currentWeapon.maxBullets)
             {
                 if (Input.GetButtonDown("Reload"))
@@ -151,6 +151,11 @@ namespace IntelligentCake.Combat
                 }
                 // We hit something, call the CmdOnHit method on the server
                 CmdOnHit(hit.point, hit.normal);
+            }
+
+            if (_currentWeapon.bullets <= 0)
+            {
+                _weaponManager.Reload();
             }
         }    
 

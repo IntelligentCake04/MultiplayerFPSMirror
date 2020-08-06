@@ -865,7 +865,6 @@ MonoBehaviour:
   syncMode: 0
   syncInterval: 0.1
   maxHealth: 100
-  currentHealth: 100
   disableOnDeath:
   - {fileID: 5530499757705377270}
   - {fileID: -4560821618034119386}
@@ -1014,15 +1013,26 @@ MonoBehaviour:
   syncInterval: 0.1
   weaponLayerName: Weapon
   weaponHolder: {fileID: 8872033651662315480}
-  primaryWeapon:
-    name: USP-45
+  weapons:
+  - name: USP-45
     damage: 10
-    fireRate: 15
+    fireRate: 8
     graphics: {fileID: 6341421942793680855, guid: d1d800c37c785164e957cbcd170f542d,
       type: 3}
     maxBullets: 10
-    bullets: 10
-    reloadTime: 0.45
+    bullets: 0
+    reloadTime: 0.75
+    isAutomatic: 0
+    range: 100
+    nextTimeToFire: 0
+  - name: Deagle
+    damage: 100
+    fireRate: 1
+    graphics: {fileID: 124810972606508391, guid: e1551714b13abe743b0579bfe8e29ce1,
+      type: 3}
+    maxBullets: 1
+    bullets: 0
+    reloadTime: 1
     isAutomatic: 0
     range: 100
     nextTimeToFire: 0

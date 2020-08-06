@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3000228966708349093}
   - component: {fileID: 3000228966708349094}
-  - component: {fileID: 3000228966708349092}
+  - component: {fileID: 6084014497914625049}
   m_Layer: 0
   m_Name: _NetworkManager
   m_TagString: Untagged
@@ -51,7 +51,7 @@ MonoBehaviour:
   serverTickRate: 30
   offlineScene: Assets/Scenes/LobbyLevelScene/Lobby.unity
   onlineScene: Assets/Scenes/MainLevelScene/Main.unity
-  transport: {fileID: 3000228966708349092}
+  transport: {fileID: 6084014497914625049}
   networkAddress: localhost
   maxConnections: 4
   disconnectInactiveConnections: 0
@@ -62,7 +62,7 @@ MonoBehaviour:
   autoCreatePlayer: 1
   playerSpawnMethod: 1
   spawnPrefabs: []
---- !u!114 &3000228966708349092
+--- !u!114 &6084014497914625049
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
