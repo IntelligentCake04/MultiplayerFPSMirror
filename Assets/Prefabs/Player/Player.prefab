@@ -587,7 +587,6 @@ GameObject:
   - component: {fileID: 1106433505519108540}
   - component: {fileID: 5530499757705377270}
   - component: {fileID: 7120920400476745458}
-  - component: {fileID: 1496693195}
   - component: {fileID: -4560821618034119386}
   - component: {fileID: -8240647842146293815}
   - component: {fileID: 2717399480305605301}
@@ -866,6 +865,8 @@ MonoBehaviour:
   syncMode: 0
   syncInterval: 0.1
   maxHealth: 100
+  death: {fileID: 8300000, guid: d7fe9b758110f35449c011a7f409974a, type: 3}
+  takeDamage: {fileID: 8300000, guid: 03d9e96004492074084fbcc1d32b5556, type: 3}
   disableOnDeath:
   - {fileID: 5530499757705377270}
   - {fileID: -4560821618034119386}
@@ -925,26 +926,6 @@ MonoBehaviour:
   jumpForce: 25
   rayCastMaxDistance: 2
   rb: {fileID: 5530499757705377271}
---- !u!114 &1496693195
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5530499757705377279}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0e666bc833b706f47be62b793a2ef15d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  syncMode: 0
-  syncInterval: 0.1
-  activeWeaponSynced: 0
-  weaponArray:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
 --- !u!114 &-4560821618034119386
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1041,6 +1022,19 @@ MonoBehaviour:
     nextTimeToFire: 0
     shoot: {fileID: 8300000, guid: e3e7bafe68604754685992a260788bb1, type: 3}
     reload: {fileID: 8300000, guid: 184c2b91ca275a24293d98c0fbaf485c, type: 3}
+  - name: M9-Bayonet
+    damage: 50
+    fireRate: 2
+    graphics: {fileID: 1999912787838167774, guid: d4ce6d668bf579e449c1894d76c743db,
+      type: 3}
+    maxBullets: 2
+    bullets: 2
+    reloadTime: 0.5
+    isAutomatic: 0
+    range: 1.5
+    nextTimeToFire: 0
+    shoot: {fileID: 8300000, guid: b3ccb6e2b892e384799be93eb733b16d, type: 3}
+    reload: {fileID: 8300000, guid: 3ad3ed8761e745b4d82abddf26189b40, type: 3}
   isReloading: 0
 --- !u!82 &9043147198277291245
 AudioSource:
@@ -7037,15 +7031,15 @@ PrefabInstance:
     m_RemovedComponents:
     - {fileID: -6057140222963153312, guid: 29c2b641d70e79849aad09c378f68e6b, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 29c2b641d70e79849aad09c378f68e6b, type: 3}
---- !u!4 &1703839038375185787 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: -7519532998605534014, guid: 29c2b641d70e79849aad09c378f68e6b,
+--- !u!1 &9074121268074952956 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 9074121268234385733, guid: 29c2b641d70e79849aad09c378f68e6b,
     type: 3}
   m_PrefabInstance: {fileID: 159498681}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &7946771998513573529 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 7946771998673071904, guid: 29c2b641d70e79849aad09c378f68e6b,
+--- !u!4 &1703839038375185787 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: -7519532998605534014, guid: 29c2b641d70e79849aad09c378f68e6b,
     type: 3}
   m_PrefabInstance: {fileID: 159498681}
   m_PrefabAsset: {fileID: 0}
@@ -7127,9 +7121,9 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 159498681}
   m_PrefabAsset: {fileID: 0}
---- !u!4 &8110561089200540788 stripped
+--- !u!4 &4414759268692515827 stripped
 Transform:
-  m_CorrespondingSourceObject: {fileID: -1112810947780112947, guid: 29c2b641d70e79849aad09c378f68e6b,
+  m_CorrespondingSourceObject: {fileID: 4414759268549794378, guid: 29c2b641d70e79849aad09c378f68e6b,
     type: 3}
   m_PrefabInstance: {fileID: 159498681}
   m_PrefabAsset: {fileID: 0}
@@ -7283,9 +7277,9 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 159498681}
   m_PrefabAsset: {fileID: 0}
---- !u!4 &4414759268692515827 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 4414759268549794378, guid: 29c2b641d70e79849aad09c378f68e6b,
+--- !u!1 &7946771998513573529 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7946771998673071904, guid: 29c2b641d70e79849aad09c378f68e6b,
     type: 3}
   m_PrefabInstance: {fileID: 159498681}
   m_PrefabAsset: {fileID: 0}
@@ -7313,9 +7307,9 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 159498681}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &9074121268074952956 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 9074121268234385733, guid: 29c2b641d70e79849aad09c378f68e6b,
+--- !u!4 &8110561089200540788 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: -1112810947780112947, guid: 29c2b641d70e79849aad09c378f68e6b,
     type: 3}
   m_PrefabInstance: {fileID: 159498681}
   m_PrefabAsset: {fileID: 0}

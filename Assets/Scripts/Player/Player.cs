@@ -21,6 +21,10 @@ namespace IntelligentCake.Player
         [SyncVar]
         private int _currentHealth;
 
+        private AudioSource _audioSource;
+        public AudioClip death;
+        public AudioClip takeDamage;
+
         public float GetHealthPct()
         {
             return (float)_currentHealth / maxHealth;
@@ -71,6 +75,7 @@ namespace IntelligentCake.Player
         
         private void Start()
         {
+            _audioSource = GetComponent<AudioSource>();
             bones = GetComponentsInChildren<FastIKFabric>();
             foreach (FastIKFabric fastIk in bones)
             {
@@ -87,7 +92,7 @@ namespace IntelligentCake.Player
                     return;
 
             if (Input.GetKeyDown(KeyCode.K))
-                RpcTakeDamage(9999);
+                RpcTakeDamage(10);
             
             if (transform.position.y < -5)
                 RpcTakeDamage(9999);
@@ -100,6 +105,7 @@ namespace IntelligentCake.Player
                 return;
             
             _currentHealth -= amount;
+            _audioSource.PlayOneShot(takeDamage);
             
             Debug.Log(transform.name + " now has " + _currentHealth + " health.");
 
@@ -112,7 +118,7 @@ namespace IntelligentCake.Player
         private void Die()
         {
             isDead = true;
-
+            CmdOnDeath();
             for (int i = 0; i < disableOnDeath.Length; i++)
             {
                 disableOnDeath[i].enabled = false;
@@ -133,6 +139,18 @@ namespace IntelligentCake.Player
             GetComponent<Animator>().enabled = false;
             SetRigidbodyState(false);
             SetColliderState(true);
+        }
+
+        [Command]
+        void CmdOnDeath()
+        {
+            RpcOnDeath();
+        }
+
+        [ClientRpc]
+        void RpcOnDeath()
+        {
+            _audioSource.PlayOneShot(death);
         }
 
         private IEnumerator Respawn()

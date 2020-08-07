@@ -65,6 +65,11 @@ namespace IntelligentCake.Combat
                 {
                     _weaponManager.CmdRequestWeaponSwitch(1);
                 }
+                
+                if (Input.GetKey(KeyCode.Alpha3))
+                {
+                    _weaponManager.CmdRequestWeaponSwitch(2);
+                }
             }
         }
         
@@ -105,7 +110,12 @@ namespace IntelligentCake.Combat
                 anim.enabled = true;
                 anim.SetTrigger("shoot");
             }
-            _weaponManager.GetCurrentGraphics().muzzleFlash.Play();
+
+            if (_weaponManager.GetCurrentGraphics().muzzleFlash != null)
+            {
+                _weaponManager.GetCurrentGraphics().muzzleFlash.Play();
+            }
+            
             _weaponManager.GetAudioSource().PlayOneShot(_currentWeapon.shoot);
         }
 
@@ -122,12 +132,15 @@ namespace IntelligentCake.Combat
         [ClientRpc]
         void RpcDoHitEffect(Vector3 pos, Vector3 normal)
         {
-            LineRenderer trail = _weaponManager.GetCurrentGraphics().bulletTrail;
-            trail.enabled = true;
-            trail.SetPosition(0, _weaponManager.GetCurrentGraphics().muzzleFlash.transform.position);
-            trail.SetPosition(1, pos);
+            if (_weaponManager.GetCurrentGraphics().bulletTrail != null)
+            {
+                LineRenderer trail = _weaponManager.GetCurrentGraphics().bulletTrail;
+                trail.enabled = true;
+                trail.SetPosition(0, _weaponManager.GetCurrentGraphics().muzzleFlash.transform.position);
+                trail.SetPosition(1, pos);
+                StartCoroutine(DestroyLine(trail));
+            }
             GameObject hitEffect = (GameObject)Instantiate(_weaponManager.GetCurrentGraphics().hitEffectPrefab, pos, Quaternion.LookRotation(normal));
-            StartCoroutine(DestroyLine(trail));
             Destroy(hitEffect, 2f);
         }
 

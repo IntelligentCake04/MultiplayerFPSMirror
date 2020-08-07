@@ -127,7 +127,7 @@ namespace IntelligentCake.Combat
             _audioSource.Play();
         }
 
-        public void Reload()
+        public void Reload()    
         {
             if (isReloading)
                 return;
