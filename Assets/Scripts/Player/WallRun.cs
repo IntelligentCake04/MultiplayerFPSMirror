@@ -16,12 +16,7 @@ namespace IntelligentCake.Player
         public float jumpForce = 25;
         [SerializeField] private float rayCastMaxDistance = 2;
         public Rigidbody rb;
-
-        // Use this for initialization
-        private void Start()
-        {
-        }
-
+        
         // Update is called once per frame
         private void Update()
         {
@@ -32,10 +27,10 @@ namespace IntelligentCake.Player
                 isWallR = false;
             }
 
-            if (isWallR && isWallL == false) anim.SetBool("Left", true);
-            if (isWallR == false) anim.SetBool("Left", false);
-            if (isWallL == false) anim.SetBool("Right", false);
-            if (isWallR == false && isWallL) anim.SetBool("Right", true);
+            // if (isWallR && isWallL == false) anim.SetBool("Left", true);
+            // if (isWallR == false) anim.SetBool("Left", false);
+            // if (isWallL == false) anim.SetBool("Right", false);
+            // if (isWallR == false && isWallL) anim.SetBool("Right", true);
 
             if (canJump && Input.GetKeyDown(KeyCode.Space))
             {

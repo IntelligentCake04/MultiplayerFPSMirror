@@ -315,7 +315,7 @@ CharacterJoint:
   m_Anchor: {x: 0, y: 0, z: 0}
   m_Axis: {x: 1, y: 0, z: 0}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: 0.0011194448, y: -0.00019660927, z: 0.0007598385}
+  m_ConnectedAnchor: {x: 0.0011194448, y: -0.00019660834, z: 0.0007598384}
   serializedVersion: 2
   m_SwingAxis: {x: 0, y: 0, z: -1}
   m_TwistLimitSpring:
@@ -546,6 +546,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5530499757476967011}
+  - component: {fileID: 8729334971287550217}
   m_Layer: 9
   m_Name: Orientation
   m_TagString: Untagged
@@ -568,6 +569,27 @@ Transform:
   m_Father: {fileID: 5530499757705377275}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &8729334971287550217
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5530499757476967008}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 544263747b1df09469eb7ec5d63d5a79, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  anim: {fileID: 6984173121847871535}
+  cameraEffect: {fileID: 5530499758437025967}
+  canJump: 0
+  cc: {fileID: 5530499757705377270}
+  isWallL: 0
+  isWallR: 0
+  jumpForce: 25
+  rayCastMaxDistance: 2
+  rb: {fileID: 5530499757705377271}
 --- !u!1 &5530499757705377279
 GameObject:
   m_ObjectHideFlags: 0
@@ -586,7 +608,6 @@ GameObject:
   - component: {fileID: -1450108267294634102}
   - component: {fileID: 1106433505519108540}
   - component: {fileID: 5530499757705377270}
-  - component: {fileID: 7120920400476745458}
   - component: {fileID: -4560821618034119386}
   - component: {fileID: -8240647842146293815}
   - component: {fileID: 2717399480305605301}
@@ -870,7 +891,7 @@ MonoBehaviour:
   disableOnDeath:
   - {fileID: 5530499757705377270}
   - {fileID: -4560821618034119386}
-  - {fileID: 7120920400476745458}
+  - {fileID: 8729334971287550217}
   spawnEffect: {fileID: 2131853413099722559, guid: 71f32df9bd379404aa61f79684a64348,
     type: 3}
   bones:
@@ -905,27 +926,6 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 256
   speedParticles: {fileID: 7052548590322112644}
---- !u!114 &7120920400476745458
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5530499757705377279}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 544263747b1df09469eb7ec5d63d5a79, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  anim: {fileID: 1514228273}
-  cameraEffect: {fileID: 5530499758437025967}
-  canJump: 0
-  cc: {fileID: 5530499757705377270}
-  isWallL: 0
-  isWallR: 0
-  jumpForce: 25
-  rayCastMaxDistance: 2
-  rb: {fileID: 5530499757705377271}
 --- !u!114 &-4560821618034119386
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1141,7 +1141,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5530499758437025967}
-  - component: {fileID: 1514228273}
+  - component: {fileID: 6984173121847871535}
   m_Layer: 9
   m_Name: Head
   m_TagString: Untagged
@@ -1156,7 +1156,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5530499758437025964}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 5.34, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -1164,7 +1164,7 @@ Transform:
   m_Father: {fileID: 5530499757705377275}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!95 &1514228273
+--- !u!95 &6984173121847871535
 Animator:
   serializedVersion: 3
   m_ObjectHideFlags: 0
