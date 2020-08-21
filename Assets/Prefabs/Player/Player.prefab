@@ -914,8 +914,8 @@ MonoBehaviour:
   counterMovement: 0.175
   grounded: 0
   jumpForce: 550
-  maxSlopeAngle: 35
-  maxSpeed: 50
+  maxSlopeAngle: 60
+  maxSpeed: 40
   moveSpeed: 4500
   orientation: {fileID: 5530499757476967011}
   isSliding: 0
