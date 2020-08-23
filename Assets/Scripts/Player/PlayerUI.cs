@@ -1,6 +1,7 @@
 ﻿using System;
 using IntelligentCake.Combat;
 using UnityEngine;
+using UnityEngine.Audio;
 using UnityEngine.UI;
 
 namespace IntelligentCake.Player
@@ -13,6 +14,8 @@ namespace IntelligentCake.Player
         [SerializeField] private Text ammoText;
     
         [SerializeField] private GameObject pauseMenu;
+        
+        public AudioMixer audioMixer;
 
         private Player _player;
         private WeaponManager _weaponManager;
@@ -60,6 +63,11 @@ namespace IntelligentCake.Player
         void SetAmmoAmount(int currentAmount, int maxAmount)
         {
             ammoText.text = currentAmount + " / " + maxAmount;
+        }
+        
+        public void SetVolume(float volume)
+        {
+            audioMixer.SetFloat("volume", volume);
         }
     }
 }
