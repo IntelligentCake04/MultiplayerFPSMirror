@@ -67,7 +67,7 @@ namespace IntelligentCake.Player
         
         public void SetVolume(float volume)
         {
-            audioMixer.SetFloat("volume", volume);
+            audioMixer.SetFloat("v    olume", Mathf.Log10(volume) * 20); 
         }
     }
 }
