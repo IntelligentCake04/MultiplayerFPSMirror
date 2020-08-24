@@ -1,4 +1,5 @@
 ﻿using System.Collections;
+using IntelligentCake.UI;
 using Mirror;
 using UnityEngine;
 
@@ -173,7 +174,7 @@ namespace IntelligentCake.Combat
             {
                 if (hit.collider.CompareTag(PlayerTag))
                 {
-                    CmdPlayerShot(hit.collider.name, _currentWeapon.damage);
+                    CmdPlayerShot(hit.collider.name, _currentWeapon.damage, transform.name);
                 }
                 // We hit something, call the CmdOnHit method on the server
                 CmdOnHit(hit.point, hit.normal);
@@ -186,11 +187,11 @@ namespace IntelligentCake.Combat
         }    
 
         [Command]
-        void CmdPlayerShot(string playerId, int damage)
+        void CmdPlayerShot(string username, int damage, string sourceID)
         {
-            Debug.Log(playerId + " has been shot.");
-            Player.Player player = GameManager.GetPlayer(playerId);
-            player.RpcTakeDamage(damage);
+            Debug.Log(username + " has been shot.");
+            Player.Player player = GameManager.GetPlayer(username);
+            player.RpcTakeDamage(damage, sourceID);
         }
     }
 }

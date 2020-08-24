@@ -21,9 +21,15 @@ namespace IntelligentCake.Player
         [SyncVar]
         private int _currentHealth;
 
+        [SyncVar] public int kills = 0;
+        [SyncVar] public int deaths = 0;
+
         private AudioSource _audioSource;
         public AudioClip death;
         public AudioClip takeDamage;
+
+        [SyncVar]
+        public string username = "Loading...";
 
         public float GetHealthPct()
         {
@@ -91,15 +97,15 @@ namespace IntelligentCake.Player
             if (!isLocalPlayer)
                     return;
 
-            if (Input.GetKeyDown(KeyCode.K))
-                RpcTakeDamage(10);
-            
-            if (transform.position.y < -5)
-                RpcTakeDamage(9999);
+            // if (Input.GetKeyDown(KeyCode.K))
+            //     RpcTakeDamage(10, transform.name);
+            //
+            // if (transform.position.y < -5)
+            //     RpcTakeDamage(9999, transform.name);
         }
 
         [ClientRpc]
-        public void RpcTakeDamage(int amount)
+        public void RpcTakeDamage(int amount, string sourceID)
         {
             if(isDead)
                 return;
@@ -111,13 +117,23 @@ namespace IntelligentCake.Player
 
             if (_currentHealth <= 0)
             {
-                Die();
+                Die(sourceID);
             }
         }
 
-        private void Die()
+        private void Die(string sourceID)
         {
             isDead = true;
+            
+            Player sourcePlayer = GameManager.GetPlayer(sourceID);
+
+            if (sourcePlayer != null)
+            {
+                sourcePlayer.kills++;
+            }
+            
+            deaths++;
+            
             CmdOnDeath();
             for (int i = 0; i < disableOnDeath.Length; i++)
             {
@@ -215,6 +231,11 @@ namespace IntelligentCake.Player
             }
             
             GetComponent<Collider>().enabled = !state;
+        }
+
+        public String GetUsername()
+        {
+            return username;
         }
     }
 }

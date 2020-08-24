@@ -1,4 +1,5 @@
 ﻿using System;
+using IntelligentCake.UI;
 using Mirror;
 using UnityEngine;
 
@@ -50,9 +51,20 @@ namespace IntelligentCake.Player
                 ui.SetPlayer(GetComponent<Player>());
                 
                 GetComponent<Player>().SetupPlayer();
+                
+                CmdSetUsername(transform.name, PlayerPrefs.GetString("Username"));
             }
-            
+        }
 
+        [Command]
+        void CmdSetUsername(string playerID, string username)
+        {
+            Player player = GameManager.GetPlayer(playerID);
+            if (player != null)
+            {
+                Debug.Log(username + " has joined!");
+                player.username = username;
+            }
         }
 
         private void SetLayerRecursively(GameObject obj, int newLayer)

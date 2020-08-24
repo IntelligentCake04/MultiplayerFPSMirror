@@ -45,6 +45,11 @@ namespace IntelligentCake
         {
             return _players[playerId];
         }
+
+        public static Player.Player[] GetAllPlayers()
+        {
+            return _players.Values.ToArray();
+        }
         
         /*private void OnGUI()
         {
