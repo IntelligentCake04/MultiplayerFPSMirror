@@ -130,8 +130,9 @@ namespace IntelligentCake.Player
             if (sourcePlayer != null)
             {
                 sourcePlayer.kills++;
+                GameManager.Instance.onPlayerKilledCallback.Invoke(username, sourcePlayer.username);
             }
-            
+
             deaths++;
             
             CmdOnDeath();
