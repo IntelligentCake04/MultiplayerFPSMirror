@@ -887,8 +887,11 @@ MonoBehaviour:
   syncMode: 0
   syncInterval: 0.1
   maxHealth: 100
+  kills: 0
+  deaths: 0
   death: {fileID: 8300000, guid: d7fe9b758110f35449c011a7f409974a, type: 3}
   takeDamage: {fileID: 8300000, guid: 03d9e96004492074084fbcc1d32b5556, type: 3}
+  username: Loading...
   disableOnDeath:
   - {fileID: 5530499757705377270}
   - {fileID: -4560821618034119386}

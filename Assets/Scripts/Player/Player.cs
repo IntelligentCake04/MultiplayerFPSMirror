@@ -134,7 +134,7 @@ namespace IntelligentCake.Player
             }
 
             deaths++;
-            
+
             CmdOnDeath();
             for (int i = 0; i < disableOnDeath.Length; i++)
             {

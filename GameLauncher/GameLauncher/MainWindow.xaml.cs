@@ -55,6 +55,7 @@ namespace GameLauncher
                 {
                     case LauncherStatus.ready:
                         PlayButton.Content = "Play";
+                        ProgressBar.Value = 100;
                         break;
                     case LauncherStatus.failed:
                         PlayButton.Content = "Update Failed - Retry";
@@ -112,7 +113,7 @@ namespace GameLauncher
                     Status = LauncherStatus.downloadingGame;
                     _onlineVersion = new Version(webClient.DownloadString(VersionAddress));
                 }
-
+                webClient.DownloadProgressChanged += new DownloadProgressChangedEventHandler(DownloadProgressChanged);
                 webClient.DownloadFileCompleted += DownloadGameCompletedCallback;
                 webClient.DownloadFileAsync(
                     new Uri(BuildAddress),
@@ -124,6 +125,16 @@ namespace GameLauncher
                 MessageBox.Show($"Error installing game files: {ex}");
             }
         }
+
+        private void DownloadProgressChanged(object sender, DownloadProgressChangedEventArgs e)
+        {
+            double bytesIn = double.Parse(e.BytesReceived.ToString());
+            double totalBytes = double.Parse(e.TotalBytesToReceive.ToString());
+            double percentage = bytesIn / totalBytes * 100;
+            ProgressBarText.Text = Math.Truncate(bytesIn / 1000000) + "MB / " + Math.Truncate(totalBytes / 1000000) + "MB downloaded";
+            ProgressBar.Value = int.Parse(Math.Truncate(percentage).ToString());
+        }
+
 
         private void DownloadGameCompletedCallback(object sender, AsyncCompletedEventArgs e)
         {
