@@ -38,7 +38,6 @@ namespace GameLauncher
         public MainWindow()
         {
             InitializeComponent();
-
             rootPath = Directory.GetCurrentDirectory();
             versionFile = Path.Combine(rootPath, "Version.txt");
             gameZip = Path.Combine(rootPath, "Build.zip");
@@ -113,7 +112,7 @@ namespace GameLauncher
                     Status = LauncherStatus.downloadingGame;
                     _onlineVersion = new Version(webClient.DownloadString(VersionAddress));
                 }
-                webClient.DownloadProgressChanged += new DownloadProgressChangedEventHandler(DownloadProgressChanged);
+                webClient.DownloadProgressChanged += DownloadProgressChanged;
                 webClient.DownloadFileCompleted += DownloadGameCompletedCallback;
                 webClient.DownloadFileAsync(
                     new Uri(BuildAddress),
@@ -131,6 +130,7 @@ namespace GameLauncher
             double bytesIn = double.Parse(e.BytesReceived.ToString());
             double totalBytes = double.Parse(e.TotalBytesToReceive.ToString());
             double percentage = bytesIn / totalBytes * 100;
+
             ProgressBarText.Text = Math.Truncate(bytesIn / 1000000) + "MB / " + Math.Truncate(totalBytes / 1000000) + "MB downloaded";
             ProgressBar.Value = int.Parse(Math.Truncate(percentage).ToString());
         }

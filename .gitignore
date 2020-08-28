@@ -64,3 +64,5 @@ crashlytics-build.properties
 # ENet Log generated file
 enet_log.txt
 
+GameLauncher/deps/NetCore3.1.7.exe
+GameLauncher/Output/setup.exe
