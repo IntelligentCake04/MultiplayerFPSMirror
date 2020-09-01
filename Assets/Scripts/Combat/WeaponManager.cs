@@ -52,7 +52,7 @@ namespace IntelligentCake.Combat
         }
 
         //Add weapon to backend inventory.
-        private void AddWeaponToPlayersInventory(PlayerWeapon weapon)
+        public void AddWeaponToPlayersInventory(PlayerWeapon weapon)
         {
             foreach (var gun in inventory)
             {
@@ -60,6 +60,7 @@ namespace IntelligentCake.Combat
                 if (gun.name == weapon.name)
                 {
                     // Add Some Ammo
+                    Debug.Log("Already in inventory");
                     return;
                 }
             }
