@@ -15,6 +15,7 @@ namespace IntelligentCake.Combat
         void Awake()
         {
             _myCollider = GetComponent<BoxCollider>();
+            gfx = gameObject;
         }
 
         void FixedUpdate()

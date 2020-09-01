@@ -71,6 +71,11 @@ namespace IntelligentCake.Combat
                 {
                     _weaponManager.CmdRequestWeaponSwitch(2);
                 }
+                
+                if (Input.GetKey(KeyCode.Alpha4))
+                {
+                    _weaponManager.CmdRequestWeaponSwitch(3);
+                }
             }
         }
         
