@@ -28,17 +28,17 @@ MonoBehaviour:
   pickUpGun:
     name: ak-47
     damage: 30
-    fireRate: 15
+    fireRate: 9.75
     graphics: {fileID: 5639399589399471983, guid: 634607f7c1bbbe045b85813e363cb0de,
       type: 3}
     maxBullets: 27
     bullets: 27
-    reloadTime: 5
+    reloadTime: 2
     isAutomatic: 1
     range: 300
     nextTimeToFire: 0
     shoot: {fileID: 8300000, guid: 37b142736839e0c4faadb1011ce01ca8, type: 3}
-    reload: {fileID: 8300000, guid: 184c2b91ca275a24293d98c0fbaf485c, type: 3}
+    reload: {fileID: 8300000, guid: cf7cda226f217174892455f817ea28c6, type: 3}
   gunRespawnTime: 10
   spinSpeed: 1
   gfx: {fileID: 9170820143161403745}

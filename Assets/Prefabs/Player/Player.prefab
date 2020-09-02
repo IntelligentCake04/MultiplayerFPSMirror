@@ -1002,11 +1002,11 @@ MonoBehaviour:
   weapons:
   - name: USP-45
     damage: 10
-    fireRate: 10
+    fireRate: 6.75
     graphics: {fileID: 6341421942793680855, guid: d1d800c37c785164e957cbcd170f542d,
       type: 3}
-    maxBullets: 10
-    bullets: 10
+    maxBullets: 12
+    bullets: 12
     reloadTime: 0.75
     isAutomatic: 0
     range: 300
@@ -1015,11 +1015,11 @@ MonoBehaviour:
     reload: {fileID: 8300000, guid: 184c2b91ca275a24293d98c0fbaf485c, type: 3}
   - name: Deagle
     damage: 100
-    fireRate: 1
+    fireRate: 4
     graphics: {fileID: 124810972606508391, guid: e1551714b13abe743b0579bfe8e29ce1,
       type: 3}
-    maxBullets: 1
-    bullets: 1
+    maxBullets: 6
+    bullets: 6
     reloadTime: 1
     isAutomatic: 0
     range: 300
@@ -1027,7 +1027,7 @@ MonoBehaviour:
     shoot: {fileID: 8300000, guid: e3e7bafe68604754685992a260788bb1, type: 3}
     reload: {fileID: 8300000, guid: 184c2b91ca275a24293d98c0fbaf485c, type: 3}
   - name: M9-Bayonet
-    damage: 50
+    damage: 75
     fireRate: 2
     graphics: {fileID: 1999912787838167774, guid: d4ce6d668bf579e449c1894d76c743db,
       type: 3}
